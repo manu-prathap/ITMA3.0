@@ -5,7 +5,7 @@ import java.util.List;
 public interface IUserDao {
 	
 	
-	User createUser();
+	User createUser(User user);
 	User fetchById(int id);
 	User fetchByEmail(String email);
 	List<User> fecthByFirstName(String firstName);

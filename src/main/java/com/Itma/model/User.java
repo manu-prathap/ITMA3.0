@@ -37,6 +37,7 @@ public class User {
 	@Column(nullable = false, unique = true)
 	private long phoneNo;
 	
+	private String idDoc;   //id document picture location
 	
 	@Temporal(TemporalType.DATE)
 	private Date dob;
@@ -58,6 +59,14 @@ public class User {
 	private boolean enabled = true;
 
 	
+	public String getIdDoc() {
+		return idDoc;
+	}
+
+	public void setIdDoc(String idDoc) {
+		this.idDoc = idDoc;
+	}
+
 	public String getHouseName() {
 		return houseName;
 	}

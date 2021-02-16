@@ -15,13 +15,13 @@ public class UserDao implements IUserDao {
 	
 	
 	@Override
-	public User createUser() {
+	public User createUser(User user) {
 		
-		User user = new User();
-		user.setFirstName("firstName");
-		user.setLastName("lastName");
-		user.setPhoneNo(89900012);
-		user.setPassword("0x888912130932jaeoj");
+//		User user = new User();
+//		user.setFirstName("firstName");
+//		user.setLastName("lastName");
+//		user.setPhoneNo(89900012);
+//		user.setPassword("0x888912130932jaeoj");
 		
 		userRepository.save(user);
 		
