@@ -1,6 +1,7 @@
 package com.Itma.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Map;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -32,7 +33,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/submit")
-	public String submit(@RequestParam("id") MultipartFile multipartFile, User userForm) throws IOException {
+	public String submit(@RequestParam("id") MultipartFile multipartFile, User userForm) throws IOException, ParseException {
 		
 		User user = new User();
 		user.setEmail(userForm.getEmail());
@@ -51,7 +52,7 @@ public class UserController {
 		//uploading ID Document scan
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		user.setIdDoc(fileName);
-		String uploadDir = "/uploads/user";
+		String uploadDir = "uploads/user";
 		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);  //add throw and catch to redirect for upload failure
 		
 		userDao.createUser(user);

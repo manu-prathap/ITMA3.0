@@ -47,8 +47,8 @@
 
 <div class = "form-group">
 
-<form:label path="dob" >Date of Birth:</form:label><br/>
-<form:input type="date" path="dob" required = "true"/><br />
+<form:label path="dob">Dob</form:label>
+<form:input path="dob" type="date" required = "true"/><br />
 
 </div>
 
@@ -77,8 +77,8 @@
 <input type = "file" name = "id" accept = "image/jpeg, image/png, application/pdf" class="btn btn-info"><br />
 </div>
 <div class = "form-group">
-<form:label path="password">Enter password</form:label><p id="pwd_valid"></p><br/>
-<form:input path="password" type = "password" required = "true" id = "pwd1"/><br/>
+<form:label path="">Enter password</form:label><p id="pwd_valid"></p><br/>
+<form:input path="" type = "password" required = "true" id = "pwd1"/><br/>
 </div>
 <div class = "form-group">
 <form:label path="password">Confirm password</form:label><p id = "pwd_notmatch"></p><br/>

@@ -1,6 +1,6 @@
 package com.Itma.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 
@@ -39,10 +37,13 @@ public class User {
 	
 	private String idDoc;   //id document picture location
 	
-	@Temporal(TemporalType.DATE)
+	
+	@Column(name = "dob")
 	private Date dob;
 	
-	private String gender = "Not Specified";
+    String gender = "Not Specified";
+    
+    
 
 	//Address
 	
