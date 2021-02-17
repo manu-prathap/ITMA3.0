@@ -1,15 +1,10 @@
 package com.Itma.model;
 
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.util.List;
-
-import javax.persistence.CascadeType;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -33,8 +28,9 @@ public class Doctor {
 		@Column(name = "last_name")
 		private String last_name;
 		
-		@Column(name = "dob")
-		private Date dob;
+		//@DateTimeFormat(pattern = "MM-dd-yyyy")
+		//@Column(name = "dob")
+		//private Date dob;
 		
 		@Column(name = "rate")
 		private BigDecimal rate;
@@ -42,40 +38,25 @@ public class Doctor {
 		@Column(name = "address")
 		private String address;
 		
-		@Column(name = "enabled")
-		private Integer enabled;
+		@Column(name = "specialization")
+		private String specialization;
 		
-		@OneToMany(targetEntity = DoctorSpecialization.class,cascade = CascadeType.ALL)
-	    @JoinColumn(name ="doctor_email",referencedColumnName = "doctor_email")
-		private List<DoctorSpecialization> doctorSpecialization ;
-
-
-
-
-		public List<DoctorSpecialization> getDoctorSpecialization() {
-			return doctorSpecialization;
-		}
-
-		public void setDoctorSpecialization(List<DoctorSpecialization> doctorSpecialization) {
-			this.doctorSpecialization = doctorSpecialization;
-		}
-
-		public Doctor(String doctor_email, String password, Integer phone_number, String first_name, String last_name,
-				Date dob, BigDecimal rate, String address, Integer enabled) {
-			super();
-			this.doctor_email = doctor_email;
-			this.password = password;
-			this.phone_number = phone_number;
-			this.first_name = first_name;
-			this.last_name = last_name;
-			this.dob = dob;
-			this.rate = rate;
-			this.address = address;
-			this.enabled = enabled;
-		}
-
-		public Doctor() {
-		}
+		@Column(name = "file_name")
+		private String fileName;
+		
+		@Column(name = "file_path")
+		private String filePath;
+		
+		@Column(name = "file_type")
+		private String fileType;
+		
+		@Column(name = "file_size")
+		private String fileSize;
+		
+		@Column(name = "created_date")
+		private Timestamp createdDate;
+		
+		private boolean enabled = true;
 
 		public String getDoctor_email() {
 			return doctor_email;
@@ -117,14 +98,6 @@ public class Doctor {
 			this.last_name = last_name;
 		}
 
-		public Date getDob() {
-			return dob;
-		}
-
-		public void setDob(Date dob) {
-			this.dob = dob;
-		}
-
 		public BigDecimal getRate() {
 			return rate;
 		}
@@ -141,20 +114,62 @@ public class Doctor {
 			this.address = address;
 		}
 
-		public Integer getEnabled() {
+		public String getSpecialization() {
+			return specialization;
+		}
+
+		public void setSpecialization(String specialization) {
+			this.specialization = specialization;
+		}
+
+		public String getFileName() {
+			return fileName;
+		}
+
+		public void setFileName(String fileName) {
+			this.fileName = fileName;
+		}
+
+		public String getFilePath() {
+			return filePath;
+		}
+
+		public void setFilePath(String filePath) {
+			this.filePath = filePath;
+		}
+
+		public String getFileType() {
+			return fileType;
+		}
+
+		public void setFileType(String fileType) {
+			this.fileType = fileType;
+		}
+
+		public String getFileSize() {
+			return fileSize;
+		}
+
+		public void setFileSize(String fileSize) {
+			this.fileSize = fileSize;
+		}
+
+		public Timestamp getCreatedDate() {
+			return createdDate;
+		}
+
+		public void setCreatedDate(Timestamp createdDate) {
+			this.createdDate = createdDate;
+		}
+
+		public boolean isEnabled() {
 			return enabled;
 		}
 
-		public void setEnabled(Integer enabled) {
+		public void setEnabled(boolean enabled) {
 			this.enabled = enabled;
 		}
 		
-		@Override
-		public String toString() {
-			return "Employee [doctor_email=" + doctor_email + ", password=" + password + ", phone_number=" + phone_number + ", first_name=" + first_name
-					+ ", last_name=" + last_name + ", dob=" + dob + ", rate" + rate + ", address="
-					+ address + ", enabled=" + enabled +"]";
-		}
 		
-		
+
 }
