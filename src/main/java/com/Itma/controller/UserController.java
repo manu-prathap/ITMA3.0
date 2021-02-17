@@ -59,7 +59,19 @@ public class UserController {
 	}
 	
 	
+	@GetMapping("/login")
+	public String login() {
+		
+	    
+		
+		return "user/userLogin";
+	}
 	
+	
+	
+	
+	
+	//password hashing
 	private String hashPassword(String plainTextPassword){
         return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
     }

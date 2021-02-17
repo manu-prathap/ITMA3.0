@@ -30,10 +30,11 @@
 <form:input path="country" placeholder = "Country" required = "true"/><br />
 <form:input path="pinCode" placeholder = "PIN Code" required = "true"/><br />
 <label for="id">Upload any ID Document</label>
-<input type = "file" name = "id" accept = "image/jpeg, image/png, application/pdf"/><br /> 
+<input type = "file" name = "id" accept = "image/jpeg, image/png, application/pdf"/><br />
+<form:label path="password">Enter a password</form:label><br/>
+<form:input path="password" type = "password" required = "true"/><br/>
 <input type="submit" value = "Register" />
-<form:label path="password">Enter a password</form:label>
-<form:input path="password" type = "password" required = "true"/>
+
 </form:form>
 </div>
 
