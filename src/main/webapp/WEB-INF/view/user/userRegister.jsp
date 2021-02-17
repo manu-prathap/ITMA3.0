@@ -6,22 +6,50 @@
 <c:set var="title" value="Registration" />
 <%@ include file = "../bootstrap.jspf" %>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 </head>
 <body>
-<div class = "container">
+<div class = "container" ng-controller="formControl">
 
 <h2>Enter the details</h2>
 
 <form:form method = "POST" modelAttribute = "userForm" enctype="multipart/form-data" action = "submit">
-<form:label path="email">email ID</form:label>
+<div class = "form-group">
+<form:label path="email">email ID</form:label><br/>
 <form:input path="email" required = "true"/><br />
-<form:label path="firstName">First Name:</form:label>
+
+
+<form:label path="firstName">First Name:</form:label><br/>
 <form:input path="firstName" required = "true"/><br />
-<form:label path="lastName">Last Name:</form:label>
+
+
+<form:label path="lastName">Last Name:</form:label><br/>
 <form:input path="lastName" required = "true"/><br />
-<form:label path="phoneNo" maxlength="12" >Phone number:</form:label>
+
+
+
+<form:label path="phoneNo" maxlength="12">Phone number:</form:label><br/>
 <form:input type="number" path="phoneNo" required = "true"/><br />
+</div>
+
+<div class = "form-group">
+
+<form:label path="dob" >Date of Birth:</form:label>
+<form:input type="date" path="dob" required = "true"/><br />
+
+</div>
+
+<div class = "form-group">
+
+<form:select path = "gender">
+<form:option value="Female">Female</form:option>
+<form:option value="Male">Male</form:option>
+<form:option value = "Not Specified">Not Specifying</form:option>
+</form:select>
+
+</div>
+
+<div class = "form-group">
 <form:label path="houseName" maxlength="12" >Enter Address:</form:label><br />
 <form:input path="houseName" placeholder = "House or Flat Name/No." required = "true"/><br />
 <form:input path="locationStreet" placeholder = "Location/Street Name" required = "true"/><br />
@@ -29,11 +57,21 @@
 <form:input path="state" placeholder = "State" required = "true"/><br />
 <form:input path="country" placeholder = "Country" required = "true"/><br />
 <form:input path="pinCode" placeholder = "PIN Code" required = "true"/><br />
+</div>
+
+<div class = "form-group">
 <label for="id">Upload any ID Document</label>
-<input type = "file" name = "id" accept = "image/jpeg, image/png, application/pdf"/><br />
-<form:label path="password">Enter a password</form:label><br/>
-<form:input path="password" type = "password" required = "true"/><br/>
-<input type="submit" value = "Register" />
+<input type = "file" name = "id" accept = "image/jpeg, image/png, application/pdf" class="btn btn-info"><br />
+</div>
+<div class = "form-group">
+<form:label path="password">Enter password</form:label><p id="pwd_valid"></p><br/>
+<form:input path="password" type = "password" required = "true" id = "pwd1"/><br/>
+</div>
+<div class = "form-group">
+<form:label path="password">Confirm password</form:label><p id = "pwd_notmatch"></p><br/>
+<form:input path="password" type = "password" required = "true" id = "pwd2"/><br/>
+</div>
+<input type="submit" value = "Register" class="btn btn-primary" />
 
 </form:form>
 </div>

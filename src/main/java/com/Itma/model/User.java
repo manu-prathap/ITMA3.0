@@ -41,6 +41,8 @@ public class User {
 	
 	@Temporal(TemporalType.DATE)
 	private Date dob;
+	
+	private String gender = "Not Specified";
 
 	//Address
 	
@@ -59,6 +61,14 @@ public class User {
 	private boolean enabled = true;
 
 	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	public String getIdDoc() {
 		return idDoc;
 	}
