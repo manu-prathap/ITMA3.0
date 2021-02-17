@@ -1,175 +1,170 @@
 package com.Itma.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
+
 
 
 @Entity
 @Table(name = "doctor")
-public class Doctor {
+public class Doctor implements Serializable{
 	
-		@Id
-		@Column(name = "doctor_email")
-		private String doctor_email;
-		
-		@Column(name = "password")
-		private String password ;
-		
-		@Column(name = "phone_number")
-		private Integer phone_number;
-		
-		@Column(name = "first_name")
-		private String first_name;
-		
-		@Column(name = "last_name")
-		private String last_name;
-		
-		//@DateTimeFormat(pattern = "MM-dd-yyyy")
-		//@Column(name = "dob")
-		//private Date dob;
-		
-		@Column(name = "rate")
-		private BigDecimal rate;
-		
-		@Column(name = "address")
-		private String address;
-		
-		@Column(name = "specialization")
-		private String specialization;
-		
-		@Column(name = "file_name")
-		private String fileName;
-		
-		@Column(name = "file_path")
-		private String filePath;
-		
-		@Column(name = "file_type")
-		private String fileType;
-		
-		@Column(name = "file_size")
-		private String fileSize;
-		
-		@Column(name = "created_date")
-		private Timestamp createdDate;
-		
-		private boolean enabled = true;
+	@Id
+	@Column(name = "doctor_email")
+	private String doctor_email;
+	
+	@Column(name = "password")
+	private String password ;
+	
+	@Column(name = "phone_number")
+	private Integer phone_number;
+	
+	@Column(name = "first_name")
+	private String first_name;
+	
+	@Column(name = "last_name")
+	private String last_name;
+	
+	@Column(name = "dob")
+	private Date dob;
+	
+	@Column(name = "address")
+	private String address;
+	
+	@Column(name = "district")
+	private String district;
+	
+	@Column(name = "state")
+	private String state;
+	
+	@Column(name = "country")
+	private String country;
+	
+	@Column(name = "pincode")
+	private int pincode;
+	
 
-		public String getDoctor_email() {
-			return doctor_email;
-		}
+	public String getAddress() {
+		return address;
+	}
 
-		public void setDoctor_email(String doctor_email) {
-			this.doctor_email = doctor_email;
-		}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-		public String getPassword() {
-			return password;
-		}
+	public String getDistrict() {
+		return district;
+	}
 
-		public void setPassword(String password) {
-			this.password = password;
-		}
+	public void setDistrict(String district) {
+		this.district = district;
+	}
 
-		public Integer getPhone_number() {
-			return phone_number;
-		}
+	public String getState() {
+		return state;
+	}
 
-		public void setPhone_number(Integer phone_number) {
-			this.phone_number = phone_number;
-		}
+	public void setState(String state) {
+		this.state = state;
+	}
 
-		public String getFirst_name() {
-			return first_name;
-		}
+	public String getCountry() {
+		return country;
+	}
 
-		public void setFirst_name(String first_name) {
-			this.first_name = first_name;
-		}
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
-		public String getLast_name() {
-			return last_name;
-		}
 
-		public void setLast_name(String last_name) {
-			this.last_name = last_name;
-		}
+	public int getPincode() {
+		return pincode;
+	}
 
-		public BigDecimal getRate() {
-			return rate;
-		}
+	public void setPincode(int pincode) {
+		this.pincode = pincode;
+	}
 
-		public void setRate(BigDecimal rate) {
-			this.rate = rate;
-		}
+	public boolean isEnabled() {
+		return enabled;
+	}
 
-		public String getAddress() {
-			return address;
-		}
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
-		public void setAddress(String address) {
-			this.address = address;
-		}
+	private boolean enabled = true;
 
-		public String getSpecialization() {
-			return specialization;
-		}
+	
+	@OneToMany(targetEntity = DoctorSpecialization.class,cascade = CascadeType.ALL)
+    @JoinColumn(name ="doctor_email",referencedColumnName = "doctor_email")
+	private List<DoctorSpecialization> doctorSpecialization ;
 
-		public void setSpecialization(String specialization) {
-			this.specialization = specialization;
-		}
+	public List<DoctorSpecialization> getDoctorSpecialization() {
+		return doctorSpecialization;
+	}
 
-		public String getFileName() {
-			return fileName;
-		}
+	public void setDoctorSpecialization(List<DoctorSpecialization> doctorSpecialization) {
+		this.doctorSpecialization = doctorSpecialization;
+	}
 
-		public void setFileName(String fileName) {
-			this.fileName = fileName;
-		}
+	public String getDoctor_email() {
+		return doctor_email;
+	}
 
-		public String getFilePath() {
-			return filePath;
-		}
+	public void setDoctor_email(String doctor_email) {
+		this.doctor_email = doctor_email;
+	}
 
-		public void setFilePath(String filePath) {
-			this.filePath = filePath;
-		}
+	public String getPassword() {
+		return password;
+	}
 
-		public String getFileType() {
-			return fileType;
-		}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-		public void setFileType(String fileType) {
-			this.fileType = fileType;
-		}
+	public Integer getPhone_number() {
+		return phone_number;
+	}
 
-		public String getFileSize() {
-			return fileSize;
-		}
+	public void setPhone_number(Integer phone_number) {
+		this.phone_number = phone_number;
+	}
 
-		public void setFileSize(String fileSize) {
-			this.fileSize = fileSize;
-		}
+	public String getFirst_name() {
+		return first_name;
+	}
 
-		public Timestamp getCreatedDate() {
-			return createdDate;
-		}
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
 
-		public void setCreatedDate(Timestamp createdDate) {
-			this.createdDate = createdDate;
-		}
+	public String getLast_name() {
+		return last_name;
+	}
 
-		public boolean isEnabled() {
-			return enabled;
-		}
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
 
-		public void setEnabled(boolean enabled) {
-			this.enabled = enabled;
-		}
-		
-		
+	public Date getDob() {
+		return dob;
+	}
 
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}	
 }

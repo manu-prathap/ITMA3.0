@@ -1,5 +1,6 @@
 package com.Itma.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -10,18 +11,37 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "doctorspecialization")
-public class DoctorSpecialization {
+@Table(name = "spec")
+public class DoctorSpecialization implements Serializable{
 	
 	@Id
     @GeneratedValue
     private Long id;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 
 	@ManyToOne
 	@JoinColumn(name = "doctor_email")
 	private Doctor doctor;
-		
+	
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+
 	@Column(name = "specialization")
 	private String specialization;
 	
@@ -45,34 +65,6 @@ public class DoctorSpecialization {
 		
 	}
 
-	public DoctorSpecialization( Long id,Doctor doctor, String specialization, String fileName, String filePath,
-			String fileType, String fileSize, Timestamp createdDate) {
-		super();
-		this.id=id;
-		this.doctor = doctor;
-		this.specialization = specialization;
-		this.fileName = fileName;
-		this.filePath = filePath;
-		this.fileType = fileType;
-		this.fileSize = fileSize;
-		this.createdDate = createdDate;
-	}
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Doctor getDoctor() {
-		return doctor;
-	}
-
-	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
-	}
 
 	public String getSpecialization() {
 		return specialization;
@@ -123,15 +115,4 @@ public class DoctorSpecialization {
 		this.createdDate = createdDate;
 	}
 
-
-	@Override
-	public String toString() {
-		return "DoctorSpecialization [id=" + id + ", doctor=" + doctor + ", specialization=" + specialization
-				+ ", fileName=" + fileName + ", filePath=" + filePath + ", fileType=" + fileType + ", fileSize="
-				+ fileSize + ", createdDate=" + createdDate + "]";
-		}
-		
-
-	}
-
-
+}
