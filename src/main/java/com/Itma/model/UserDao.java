@@ -30,32 +30,34 @@ public class UserDao implements IUserDao {
 
 	@Override
 	public User fetchById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		User user = userRepository.findByuserId(id);
+		
+		return user;
 	}
 
 	@Override
 	public User fetchByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = userRepository.findByemail(email);
+		return user;
 	}
 
 	@Override
 	public List<User> fecthByFirstName(String firstName) {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> users = userRepository.findByfirstName(firstName);
+		return users;
 	}
 
 	@Override
 	public List<User> fetchByLocation(String location) {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> users = userRepository.findBylocationStreet(location);
+		return users;
 	}
 
 	@Override
 	public User fetchByPhoneNo(int phoneNo) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = userRepository.findByphoneNo(phoneNo);
+		return user;
 	}
 
 }

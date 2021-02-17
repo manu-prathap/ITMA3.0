@@ -62,12 +62,20 @@ public class UserController {
 	@GetMapping("/login")
 	public String login() {
 		
-	    
-		
 		return "user/userLogin";
 	}
 	
-	
+	@PostMapping("/login")
+	public String login(@RequestParam("email") String email, @RequestParam("password") String password){
+		
+		User user = userDao.fetchByEmail(email);
+		if(password==user.getPassword()) {
+			
+		}
+		
+		
+		return null;
+	}
 	
 	
 	

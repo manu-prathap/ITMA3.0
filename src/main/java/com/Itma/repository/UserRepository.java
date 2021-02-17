@@ -10,7 +10,7 @@ import com.Itma.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-	  User findById(int id);
+	  User findByuserId(int id);
 	  User findByemail(String email);
 	  List<User> findByfirstName(String firstName);
 	  List<User> findBylocationStreet(String location);
