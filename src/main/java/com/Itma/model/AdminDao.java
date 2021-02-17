@@ -18,14 +18,14 @@ public class AdminDao implements IAdminDao {
 	
 
 	@Override
-	public Admin createAdmin() {
+	public Admin createAdmin(Admin admin) {
 		
-	    Admin admin = new Admin();
-		admin.setFirstName("firstName");
-		admin.setLastName("lastName");
-		admin.setPassword("0x888912130932jaeoj");
-		
-		adminRepository.save(admin);
+//	    Admin admin = new Admin();
+//		admin.setFirstName("firstName");
+//		admin.setLastName("lastName");
+//		admin.setPassword("0x888912130932jaeoj");
+//		
+	adminRepository.save(admin);
 		
 		return admin;
 	}
@@ -36,11 +36,7 @@ public class AdminDao implements IAdminDao {
 		return null;
 	}
 
-	@Override
-	public Admin fetchByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public List<Admin> fecthByFirstName(String firstName) {
@@ -48,11 +44,14 @@ public class AdminDao implements IAdminDao {
 		return null;
 	}
 
+	
+
 	@Override
-	public Admin createAdmin(Admin admin) {
+	public Admin createAdmin() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 
 }

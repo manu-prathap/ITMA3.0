@@ -19,8 +19,7 @@ public class Admin {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int adminId;
 	
-	@Column(unique = true)
-	private String email;
+
 	
 	@Column(nullable=false)
 	private String password;
@@ -32,10 +31,6 @@ public class Admin {
 	@Column(nullable = false)
 	private String lastName;
 	
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 
 	public String getPassword() {
@@ -56,13 +51,7 @@ public class Admin {
 		this.adminId = adminId;
 	}
 
-	public String getAdminEmail() {
-		return email;
-	}
-
-	public void setAdminEmail(String adminEmail) {
-		this.email = adminEmail;
-	}
+	
 
 	public String getFirstName() {
 		return firstName;

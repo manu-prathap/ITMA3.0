@@ -2,6 +2,7 @@ package com.Itma.controller;
 
 
 import java.io.IOException;
+
 import java.util.Map;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -12,9 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.Itma.model.AdminDao;
 import com.Itma.model.Admin;
 
@@ -37,15 +35,14 @@ public class AdminController {
 
 	}
 	@PostMapping("/submit")
-	public String submit(@RequestParam("id") MultipartFile multipartFile, Admin adminForm) throws IOException {
+	public String submit(Admin adminForm) throws IOException {
 		
 		Admin admin = new Admin();
-		admin.setEmail(adminForm.getAdminEmail());
 		admin.setPassword(hashPassword(adminForm.getPassword())); //hashing password
 		admin.setFirstName(adminForm.getFirstName());
 		admin.setLastName(adminForm.getLastName());
 		
-	
+	    
 		
 		
 		

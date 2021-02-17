@@ -12,7 +12,6 @@ import com.Itma.model.Admin;
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
 
 	  Admin findById(int id);
-	  Admin findByemail(String email);
 	  List<Admin> findByfirstName(String firstName);
 	  List<Admin> findBylastName(String lastName);
 	 
