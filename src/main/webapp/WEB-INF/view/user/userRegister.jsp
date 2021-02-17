@@ -14,12 +14,23 @@
 <h2>Enter the details</h2>
 
 <form:form method = "POST" modelAttribute = "userForm" enctype="multipart/form-data" action = "submit">
+
+<div class = "row">
 <div class = "form-group" >
+<div class = "col-md-6">
 <form:label path="email">email ID</form:label><br/>
 <form:input path="email" required = "true"/><br />
+</div>
+<div class = "col-md-6">
 <form:label path="phoneNo" maxlength="12">Phone number:</form:label><br/>
 <form:input type="number" path="phoneNo" required = "true"/><br />
+</div>
+</div>
+</div>
+<br/>
+
 <div class = "row">
+<div class = "form-group">
 <div class = "col-md-6">
 <form:label path="firstName">First Name:</form:label><br/>
 <form:input path="firstName" required = "true"/><br />
@@ -30,8 +41,8 @@
 </div>
 
 </div>
-
 </div>
+
 
 
 <div class = "form-group">
