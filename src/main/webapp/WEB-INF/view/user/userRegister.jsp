@@ -14,33 +14,35 @@
 <h2>Enter the details</h2>
 
 <form:form method = "POST" modelAttribute = "userForm" enctype="multipart/form-data" action = "submit">
-<div class = "form-group">
+<div class = "form-group" >
 <form:label path="email">email ID</form:label><br/>
 <form:input path="email" required = "true"/><br />
-
-
-<form:label path="firstName">First Name:</form:label><br/>
-<form:input path="firstName" required = "true"/><br />
-
-
-<form:label path="lastName">Last Name:</form:label><br/>
-<form:input path="lastName" required = "true"/><br />
-
-
-
 <form:label path="phoneNo" maxlength="12">Phone number:</form:label><br/>
 <form:input type="number" path="phoneNo" required = "true"/><br />
+<div class = "row">
+<div class = "col-md-6">
+<form:label path="firstName">First Name:</form:label><br/>
+<form:input path="firstName" required = "true"/><br />
 </div>
+<div class = "col-md-6">
+<form:label path="lastName">Last Name:</form:label><br/>
+<form:input path="lastName" required = "true"/><br />
+</div>
+
+</div>
+
+</div>
+
 
 <div class = "form-group">
 
-<form:label path="dob" >Date of Birth:</form:label>
+<form:label path="dob" >Date of Birth:</form:label><br/>
 <form:input type="date" path="dob" required = "true"/><br />
 
 </div>
 
 <div class = "form-group">
-
+<form:label path="gender">Gender</form:label><br/>
 <form:select path = "gender">
 <form:option value="Female">Female</form:option>
 <form:option value="Male">Male</form:option>
