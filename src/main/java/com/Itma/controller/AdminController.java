@@ -3,6 +3,7 @@ package com.Itma.controller;
 
 import java.io.IOException;
 
+
 import java.util.Map;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+
 import com.Itma.model.AdminDao;
 import com.Itma.model.Admin;
 
@@ -42,13 +45,12 @@ public class AdminController {
 		admin.setFirstName(adminForm.getFirstName());
 		admin.setLastName(adminForm.getLastName());
 		
-	    
-		
-		
-		
 		adminDao.createAdmin(admin);
 		return "admin/adminHome";
 	}
+	
+	
+	
 	
 	
 //	@GetMapping("/login")

@@ -9,7 +9,7 @@ public interface IAdminDao {
 	Admin fetchById(int id);
 	List<Admin> fecthByFirstName(String firstName);
 	Admin createAdmin();
-	
+	public List<User>getAllUsers();
 	//Admin fetchByPhoneNo(int phoneNo);
 	
 }

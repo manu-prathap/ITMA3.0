@@ -9,11 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Itma.repository.AdminRepository;
+import com.Itma.repository.UserRepository;
 
 @Service
 public class AdminDao implements IAdminDao {
 	@Autowired
 	AdminRepository adminRepository;
+	@Autowired
+	UserRepository userRepository;
 	
 	
 
@@ -50,6 +53,12 @@ public class AdminDao implements IAdminDao {
 	public Admin createAdmin() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return userRepository.findAll();
 	}
 
 
