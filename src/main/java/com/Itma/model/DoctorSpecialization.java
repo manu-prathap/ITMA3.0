@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "spec")
+@Table(name = "specialization")
 public class DoctorSpecialization implements Serializable{
 	
 	@Id
@@ -28,19 +28,17 @@ public class DoctorSpecialization implements Serializable{
 		this.id = id;
 	}
 
-
-	@ManyToOne
-	@JoinColumn(name = "doctor_email")
-	private Doctor doctor;
+	@Column(name = "doctor_email")
+	private String doctor_email;
 	
-	public Doctor getDoctor() {
-		return doctor;
+
+	public String getDoctor_email() {
+		return doctor_email;
 	}
 
-	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
+	public void setDoctor_email(String doctor_email) {
+		this.doctor_email = doctor_email;
 	}
-
 
 	@Column(name = "specialization")
 	private String specialization;
@@ -59,12 +57,6 @@ public class DoctorSpecialization implements Serializable{
 	
 	@Column(name = "created_date")
 	private Timestamp createdDate;
-	
-	public DoctorSpecialization()
-	{
-		
-	}
-
 
 	public String getSpecialization() {
 		return specialization;

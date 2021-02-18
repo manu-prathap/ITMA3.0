@@ -21,8 +21,11 @@
 <form:label path="last_name">Last Name:</form:label>
 <form:input path="last_name" required = "true"/><br />
 
-<form:label path="phone_number" maxlength="12" >Phone number:</form:label>
+<form:label path="phone_number">Phone number:</form:label>
 <form:input type="tel" path="phone_number" required = "true"/><br />
+
+<form:label path="dob">Dob</form:label>
+<form:input path="dob" type="date" required = "true"/><br />
 
 <form:label path="password">Enter a password</form:label>
 <form:input path="password" type = "password" required = "true"/><br/>
@@ -43,7 +46,7 @@
 <form:input type="text" path="pincode" pattern="^[0-9]{6}$" required = "true"/><br />
 
 <label for="specialization">specialization</label>
-<input type="specialization" name = "specialization"required = "true"/><br />
+<input type="specialization" name = "specialization" required = "true"/><br />
 
 <label for="id">Upload any ID Document</label>
 <input type = "file" name = "file" accept = "image/jpeg, image/png, application/pdf"/><br />

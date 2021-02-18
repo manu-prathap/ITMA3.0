@@ -15,6 +15,8 @@ public boolean saveDoctor(Doctor doctor) throws IOException;
 	 public List<DoctorSpecialization> doctorSpecialization() ;
 	 
 	 boolean saveDoctorSpec(DoctorSpecialization doctorSpec) throws IOException;
+	 
+	 boolean saveDoctorSchedule(DoctorSchedule doctorSchedule) throws IOException;
 
 
 }

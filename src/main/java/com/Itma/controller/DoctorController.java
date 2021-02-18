@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.Itma.model.Doctor;
 import com.Itma.model.DoctorDao;
+import com.Itma.model.DoctorSchedule;
 import com.Itma.model.DoctorSpecialization;
 
 
@@ -55,7 +56,8 @@ public class DoctorController {
 		BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
 		stream.write(file.getBytes());
 		stream.close();
-		spec.setDoctor(doctor);
+		String email=doctor.getDoctor_email();
+		spec.setDoctor_email(email);
 		spec.setSpecialization(specialization);
 		spec.setFileName(fileName);
 		spec.setFilePath(filePath);
@@ -64,5 +66,15 @@ public class DoctorController {
 		spec.setCreatedDate(currentTimestamp);
 		doctorService.saveDoctorSpec(spec);
 		return "user/userHome";
+		//return "doctor/doctorSchedule";
 	}
+	
+	@PostMapping("/saveSchedule")
+	public String submitschedule(DoctorSchedule doctorSchedule) throws IOException {
+		Doctor doctor=new Doctor();
+		doctorSchedule.setDoctor(doctor);
+		doctorService.saveDoctorSchedule(doctorSchedule);
+		return "user/userHome";
+	}
+
 }

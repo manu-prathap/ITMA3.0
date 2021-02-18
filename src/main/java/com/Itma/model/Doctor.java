@@ -1,10 +1,8 @@
 package com.Itma.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,9 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-
-
 
 
 @Entity
@@ -29,7 +24,7 @@ public class Doctor implements Serializable{
 	private String password ;
 	
 	@Column(name = "phone_number")
-	private Integer phone_number;
+	private long phone_number;
 	
 	@Column(name = "first_name")
 	private String first_name;
@@ -108,17 +103,6 @@ public class Doctor implements Serializable{
 	private boolean enabled = true;
 
 	
-	@OneToMany(targetEntity = DoctorSpecialization.class,cascade = CascadeType.ALL)
-    @JoinColumn(name ="doctor_email",referencedColumnName = "doctor_email")
-	private List<DoctorSpecialization> doctorSpecialization ;
-
-	public List<DoctorSpecialization> getDoctorSpecialization() {
-		return doctorSpecialization;
-	}
-
-	public void setDoctorSpecialization(List<DoctorSpecialization> doctorSpecialization) {
-		this.doctorSpecialization = doctorSpecialization;
-	}
 
 	public String getDoctor_email() {
 		return doctor_email;
@@ -136,11 +120,11 @@ public class Doctor implements Serializable{
 		this.password = password;
 	}
 
-	public Integer getPhone_number() {
+	public long getPhone_number() {
 		return phone_number;
 	}
 
-	public void setPhone_number(Integer phone_number) {
+	public void setPhone_number(long phone_number) {
 		this.phone_number = phone_number;
 	}
 
