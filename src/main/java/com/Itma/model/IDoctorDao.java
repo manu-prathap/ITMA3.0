@@ -6,15 +6,15 @@ import java.util.List;
 public interface IDoctorDao {
 public boolean saveDoctor(Doctor doctor) throws IOException;
 	
-	public List<Doctor> getAllDoctors();
+	public List<Doctor> fetchAllDoctors();
 	 
-	 public Doctor findById(String doctor_email);
+	 public Doctor fetchById(String doctor_email);
 
-	public List<Doctor>  findDoctor(String doctor_email);
+	//public List<Doctor>  fetchDoctor(String doctor_email);
 	
-	 public List<DoctorSpecialization> doctorSpecialization() ;
+	 public List<DoctorSpecialization> fetchDoctorSpecialization(String doctor_email) ;
 	 
 	 boolean saveDoctorSpec(DoctorSpecialization doctorSpec) throws IOException;
 
-
+     //List<Doctor> search(String keyword);
 }

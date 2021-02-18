@@ -2,6 +2,7 @@ package com.Itma.controller;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
 import java.util.Map;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.Itma.model.Doctor;
+import com.Itma.model.HibernateSearchClass;
 import com.Itma.model.User;
 import com.Itma.model.UserDao;
 
@@ -23,6 +26,9 @@ public class UserController {
 
 	@Autowired
 	UserDao userDao;
+	
+	@Autowired
+	HibernateSearchClass hibernateSearch;
 	
 	
 	
@@ -56,17 +62,23 @@ public class UserController {
 		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);  //add throw and catch to redirect for upload failure
 		
 		userDao.createUser(user);
-		return "user/userHome";
+		return "index";
 	}
 	
 	
 	@GetMapping("/login")
-	public String login() {
+	public String login(String email, Map<String, Object> model) {
 		
-		return "user/userLogin";
+		User user = userDao.fetchByEmail("bugsbunny@email.com");
+		String name = user.getFirstName();
+		
+		model.put("name", name);
+		model.put("user", user);
+		
+		return "user/userHome";
 	}
 	
-	@PostMapping("/login")
+	@PostMapping("/loginsuccess")
 	public String login(@RequestParam("email") String email, @RequestParam("password") String password){
 		
 		User user = userDao.fetchByEmail(email);
@@ -75,9 +87,31 @@ public class UserController {
 		}
 		
 		
-		return null;
+		return "user/userHome";
 	}
 	
+
+	
+	@GetMapping("/search")
+	public String search(@RequestParam(value = "search", required = false) String searchTerm, Map<String, Object> model) {
+		
+		List<Doctor> searchResults = null; 
+		
+		try {
+			
+			searchResults = hibernateSearch.fuzzySearch(searchTerm);
+			
+			
+		}catch(Exception ex) {
+			
+			ex.printStackTrace();
+			
+		}
+		
+	    model.put("doctors",searchResults);
+		
+		return "user/userHome";
+	} 
 	
 	
 	//password hashing

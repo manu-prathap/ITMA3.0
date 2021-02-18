@@ -1,72 +1,124 @@
 package com.Itma.model;
 
-import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
 
 
 
-
+@Indexed
 @Entity
-@Table(name = "doctor")
-public class Doctor implements Serializable{
+public class Doctor{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	@Id
-	@Column(name = "doctor_email")
-	private String doctor_email;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 	
-	@Column(name = "password")
+	@Column(unique = true)
+	@Field
+	private String doctorEmail;
+	
+	
 	private String password ;
 	
-	@Column(name = "phone_number")
-	private Integer phone_number;
+	@Column(nullable = false)
+	private long phoneNumber;
 	
-	@Column(name = "first_name")
-	private String first_name;
 	
-	@Column(name = "last_name")
-	private String last_name;
+	@Field
+	private String firstName;
+	
+	@Field
+	private String lastName;
 	
 	@Column(name = "dob")
 	private Date dob;
 	
-	@Column(name = "address")
-	private String address;
+	@Field
+	private String streetAddress;
 	
-	@Column(name = "district")
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getStreetAddress() {
+		return streetAddress;
+	}
+
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress = streetAddress;
+	}
+
+	@Field
 	private String district;
 	
-	@Column(name = "state")
+	@Field
 	private String state;
 	
-	@Column(name = "country")
+	@Field
 	private String country;
 	
-	@Column(name = "pincode")
-	private int pincode;
-	
+	@Field
+	private int pinCode;
 
-	public String getAddress() {
-		return address;
+	public String getDoctorEmail() {
+		return doctorEmail;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setDoctorEmail(String doctorEmail) {
+		this.doctorEmail = doctorEmail;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public long getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
 
 	public String getDistrict() {
 		return district;
@@ -92,83 +144,13 @@ public class Doctor implements Serializable{
 		this.country = country;
 	}
 
-
-	public int getPincode() {
-		return pincode;
+	public int getPinCode() {
+		return pinCode;
 	}
 
-	public void setPincode(int pincode) {
-		this.pincode = pincode;
+	public void setPinCode(int pinCode) {
+		this.pinCode = pinCode;
 	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	private boolean enabled = true;
-
 	
-	@OneToMany(targetEntity = DoctorSpecialization.class, cascade = CascadeType.ALL)
-    @JoinColumn(name ="doctor_email",referencedColumnName = "doctor_email")
-	private List<DoctorSpecialization> doctorSpecialization ;
 
-	public List<DoctorSpecialization> getDoctorSpecialization() {
-		return doctorSpecialization;
 	}
-
-	public void setDoctorSpecialization(List<DoctorSpecialization> doctorSpecialization) {
-		this.doctorSpecialization = doctorSpecialization;
-	}
-
-	public String getDoctor_email() {
-		return doctor_email;
-	}
-
-	public void setDoctor_email(String doctor_email) {
-		this.doctor_email = doctor_email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Integer getPhone_number() {
-		return phone_number;
-	}
-
-	public void setPhone_number(Integer phone_number) {
-		this.phone_number = phone_number;
-	}
-
-	public String getFirst_name() {
-		return first_name;
-	}
-
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
-	}
-
-	public String getLast_name() {
-		return last_name;
-	}
-
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
-	}
-
-	public Date getDob() {
-		return dob;
-	}
-
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}	
-}

@@ -5,15 +5,13 @@ import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.Itma.repository.DoctorRepository;
 import com.Itma.repository.DoctorSpecializationRepository;
 
 
 
 @Service
-@Transactional
+//@Transactional
 public class DoctorDao implements IDoctorDao {
 	
 	@Autowired
@@ -21,6 +19,10 @@ public class DoctorDao implements IDoctorDao {
 	
 	@Autowired
 	DoctorSpecializationRepository specRepository;
+	
+//	@Autowired
+//	DoctorSearchRepository searchRepository;
+	
 
 	@Override
 	public boolean saveDoctor(Doctor doctor) throws IOException {
@@ -41,23 +43,32 @@ public class DoctorDao implements IDoctorDao {
 		return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
 	}
 	
+//	@Override
+//	public List<Doctor> search(String keyword){
+//		
+//		
+//		return doctorRepository.search(keyword);
+//		
+//	}
+	
+	
 
 	@Override
-	public List<Doctor> getAllDoctors() {
+	public List<Doctor> fetchAllDoctors() {
 		return doctorRepository.findAll();
 	}
 
 	@Override
-	public Doctor findById(String doctor_email) {
-		// TODO Auto-generated method stub
-		return null;
+	public Doctor fetchById(String doctor_email) {
+		
+		return doctorRepository.findBydoctorEmail(doctor_email);
 	}
 
-	@Override
-	public List<Doctor> findDoctor(String doctor_email) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public List<Doctor> findDoctor(String doctor_email) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	
 	@Override
 	public boolean saveDoctorSpec(DoctorSpecialization doctorSpec) throws IOException {
@@ -74,9 +85,9 @@ public class DoctorDao implements IDoctorDao {
 
 	}
 	@Override
-	public List<DoctorSpecialization> doctorSpecialization() {
+	public List<DoctorSpecialization> fetchDoctorSpecialization(String doctorEmail) {
 		// TODO Auto-generated method stub
-		return specRepository.findAll();
+		return specRepository.findBydoctorEmail(doctorEmail);
 	}
 
 

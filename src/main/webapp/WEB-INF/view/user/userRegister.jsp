@@ -3,9 +3,10 @@
 <%@ include file = "../formBase.jspf" %>    
 <!DOCTYPE html>
 <html>
+
+<head>
 <c:set var="title" value="Registration" />
 <%@ include file = "../bootstrap.jspf" %>
-<head>
 <meta charset="UTF-8">
 </head>
 <body>
