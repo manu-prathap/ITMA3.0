@@ -12,17 +12,17 @@
 <h2>Enter the details</h2>
 
 <form:form method = "POST" modelAttribute = "doctor"  enctype="multipart/form-data" action = "save">
-<form:label path="doctor_email">Email ID</form:label>
-<form:input path="doctor_email" required = "true"/><br />
+<form:label path="doctorEmail">Email ID</form:label>
+<form:input path="doctorEmail" required = "true"/><br />
 
-<form:label path="first_name">First Name:</form:label>
-<form:input path="first_name" required = "true"/><br />
+<form:label path="firstName">First Name:</form:label>
+<form:input path="firstName" required = "true"/><br />
 
-<form:label path="last_name">Last Name:</form:label>
-<form:input path="last_name" required = "true"/><br />
+<form:label path="lastName">Last Name:</form:label>
+<form:input path="lastName" required = "true"/><br />
 
-<form:label path="phone_number">Phone number:</form:label>
-<form:input type="tel" path="phone_number" required = "true"/><br />
+<form:label path="phoneNumber">Phone number:</form:label>
+<form:input type="tel" path="phoneNumber" required = "true"/><br />
 
 <form:label path="dob">Dob</form:label>
 <form:input path="dob" type="date" required = "true"/><br />

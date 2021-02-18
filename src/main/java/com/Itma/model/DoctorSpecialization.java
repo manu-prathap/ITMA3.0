@@ -28,35 +28,34 @@ public class DoctorSpecialization implements Serializable{
 		this.id = id;
 	}
 
-	@Column(name = "doctor_email")
-	private String doctor_email;
+	@Column(name = "doctorEmail")
+	private String doctorEmail;
 	
-
-	public String getDoctor_email() {
-		return doctor_email;
-	}
-
-	public void setDoctor_email(String doctor_email) {
-		this.doctor_email = doctor_email;
-	}
-
 	@Column(name = "specialization")
 	private String specialization;
 	
-	@Column(name = "file_name")
+	@Column(name = "fileName")
 	private String fileName;
 	
-	@Column(name = "file_path")
+	@Column(name = "filePath")
 	private String filePath;
 	
-	@Column(name = "file_type")
+	@Column(name = "fileType")
 	private String fileType;
 	
-	@Column(name = "file_size")
+	@Column(name = "fileSize")
 	private String fileSize;
 	
-	@Column(name = "created_date")
+	@Column(name = "createdDate")
 	private Timestamp createdDate;
+
+	public String getDoctorEmail() {
+		return doctorEmail;
+	}
+
+	public void setDoctorEmail(String doctorEmail) {
+		this.doctorEmail = doctorEmail;
+	}
 
 	public String getSpecialization() {
 		return specialization;
@@ -102,9 +101,10 @@ public class DoctorSpecialization implements Serializable{
 		return createdDate;
 	}
 
-
 	public void setCreatedDate(Timestamp createdDate) {
 		this.createdDate = createdDate;
 	}
+
+	
 
 }

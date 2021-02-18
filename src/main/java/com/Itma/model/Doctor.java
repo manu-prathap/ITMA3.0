@@ -17,20 +17,20 @@ import javax.persistence.Table;
 public class Doctor implements Serializable{
 	
 	@Id
-	@Column(name = "doctor_email")
-	private String doctor_email;
+	@Column(name = "doctorEmail")
+	private String doctorEmail;
 	
 	@Column(name = "password")
 	private String password ;
 	
-	@Column(name = "phone_number")
-	private long phone_number;
+	@Column(name = "phoneNumber")
+	private long phoneNumber;
 	
-	@Column(name = "first_name")
-	private String first_name;
+	@Column(name = "firstName")
+	private String firstName;
 	
-	@Column(name = "last_name")
-	private String last_name;
+	@Column(name = "lastName")
+	private String lastName;
 	
 	@Column(name = "dob")
 	private Date dob;
@@ -102,14 +102,12 @@ public class Doctor implements Serializable{
 
 	private boolean enabled = true;
 
-	
-
-	public String getDoctor_email() {
-		return doctor_email;
+	public String getDoctorEmail() {
+		return doctorEmail;
 	}
 
-	public void setDoctor_email(String doctor_email) {
-		this.doctor_email = doctor_email;
+	public void setDoctorEmail(String doctorEmail) {
+		this.doctorEmail = doctorEmail;
 	}
 
 	public String getPassword() {
@@ -120,28 +118,28 @@ public class Doctor implements Serializable{
 		this.password = password;
 	}
 
-	public long getPhone_number() {
-		return phone_number;
+	public long getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhone_number(long phone_number) {
-		this.phone_number = phone_number;
+	public void setPhoneNumber(long phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public Date getDob() {

@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,7 +47,8 @@ public class DoctorController {
 	@PostMapping("/save")
 	public String submit(Doctor doctor,
 			@RequestParam("specialization") final String specialization,
-			final @RequestParam("file") MultipartFile file) throws IOException {
+			final @RequestParam("file") MultipartFile file ,@ModelAttribute("doctorEmail")String  doctorEmail,
+            Model model) throws IOException {
 		DoctorSpecialization spec=new DoctorSpecialization();
 		doctorService.saveDoctor(doctor);
 		String fileName = file.getOriginalFilename();
@@ -56,8 +60,8 @@ public class DoctorController {
 		BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
 		stream.write(file.getBytes());
 		stream.close();
-		String email=doctor.getDoctor_email();
-		spec.setDoctor_email(email);
+		String email=doctor.getDoctorEmail();
+		spec.setDoctorEmail(email);
 		spec.setSpecialization(specialization);
 		spec.setFileName(fileName);
 		spec.setFilePath(filePath);
@@ -65,14 +69,14 @@ public class DoctorController {
 		spec.setFileSize(fileSize);
 		spec.setCreatedDate(currentTimestamp);
 		doctorService.saveDoctorSpec(spec);
-		return "user/userHome";
-		//return "doctor/doctorSchedule";
+		//return "user/userHome";
+		model.addAttribute("doctorEmail",doctorEmail);
+		return "doctor/doctorSchedule";
 	}
 	
 	@PostMapping("/saveSchedule")
 	public String submitschedule(DoctorSchedule doctorSchedule) throws IOException {
-		Doctor doctor=new Doctor();
-		doctorSchedule.setDoctor(doctor);
+		//doctorSchedule.setDoctorEmail(doctorEmail);
 		doctorService.saveDoctorSchedule(doctorSchedule);
 		return "user/userHome";
 	}
