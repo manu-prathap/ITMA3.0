@@ -2,8 +2,7 @@ package com.Itma.controller;
 
 
 import java.io.IOException;
-
-
+import java.util.List;
 import java.util.Map;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -17,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import com.Itma.model.AdminDao;
+import com.Itma.model.User;
+import com.Itma.model.UserDao;
+import com.Itma.repository.UserRepository;
+
 import com.Itma.model.Admin;
 
 
@@ -28,6 +31,9 @@ public class AdminController {
 	@Autowired
 	AdminDao adminDao;
 	
+	
+	@Autowired
+	UserRepository userRepo;
 	
 	
 	@GetMapping("/register")
@@ -49,6 +55,16 @@ public class AdminController {
 		return "admin/adminHome";
 	}
 	
+	@GetMapping("/userLog")
+	public String  getLog(Map<String, Object> model) {
+		
+		List<User> userList = userRepo.findAll();
+		
+		model.put("list",userList);
+		
+		return "admin/userLog";
+		
+	}
 	
 	
 	
