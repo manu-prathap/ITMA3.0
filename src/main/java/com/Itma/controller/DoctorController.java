@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,13 +31,42 @@ import com.Itma.model.DoctorSpecialization;
 
 
 @Controller
-@RequestMapping("doctor")
+//@RequestMapping("doctor")
 public class DoctorController {
 	
 	public static String uploadDirectory = System.getProperty("user.dir") + "/uploads";
 		
 	@Autowired
 	DoctorDao doctorService;
+	
+
+	@GetMapping("/login")
+	public String register1(Model model, String error, String logout) {
+		 if (error != null) 
+	            model.addAttribute("error", "Your username and password is invalid.");
+
+
+	        if (logout != null)
+	            model.addAttribute("message", "You have been logged out successfully.");
+
+	        return "doctor/login";
+
+		
+	}
+	
+
+	    @RequestMapping(value = {
+	        "/",
+	        "/welcome"
+	    }, method = RequestMethod.GET)
+	    public String welcome(Model model) {
+	        return "welcome";
+	    }
+	
+
+ 
+	
+	
 
 	@GetMapping("/register")
 	public String register(Map<String, Object> model) {
