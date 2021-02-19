@@ -92,8 +92,8 @@ public class UserController {
 	
 
 	
-	@GetMapping("/search")
-	public String search(@RequestParam(value = "search", required = false) String searchTerm, Map<String, Object> model) {
+	@GetMapping("/login/search")
+	public String search(@RequestParam(value = "query", required = false) String searchTerm, Map<String, Object> model) {
 		
 		List<Doctor> searchResults = null; 
 		

@@ -11,7 +11,7 @@
 <body>
 <h3>Welcome ${name}</h3>
 <a href="#">Appointments<span class="badge">${ scheduleNumber }</span></a><br>
-<form method = "GET" action="search" name = "search" class="search-bar">
+<form method = "GET" action="login/search" name = "query" class="search-bar">
 <input type = "text" placeholder = "Search"/><input type = "submit" value = "search"/>
 </form>
 
@@ -28,7 +28,7 @@ Location
 </tr>
 <tr>
 <td>${ doctor.firstName }</td>
-<td>${ doctor.streetAddress } &nbsp ${ doctor.district }</td>
+<td>${ doctor.streetAddress }  ${ doctor.district }</td>
 </tr>
 
 </table>
