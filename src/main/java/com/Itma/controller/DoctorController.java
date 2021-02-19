@@ -39,35 +39,19 @@ public class DoctorController {
 	@Autowired
 	DoctorDao doctorService;
 	
-
-	@GetMapping("/login")
-	public String register1(Model model, String error, String logout) {
-		 if (error != null) 
+	 @RequestMapping(value = "/login", method = RequestMethod.GET)
+	    public String login(Model model, String error) {
+	        if (error != null)
 	            model.addAttribute("error", "Your username and password is invalid.");
-
-
-	        if (logout != null)
-	            model.addAttribute("message", "You have been logged out successfully.");
-
 	        return "doctor/login";
+	    }
 
-		
-	}
-	
-
-	    @RequestMapping(value = {
-	        "/",
-	        "/welcome"
-	    }, method = RequestMethod.GET)
+	    @RequestMapping(value = {"/","/doctorHome"}, method = RequestMethod.GET)
 	    public String welcome(Model model) {
-	        return "welcome";
+	        return "doctor/doctorHome";
 	    }
 	
-
- 
-	
-	
-
+		
 	@GetMapping("/register")
 	public String register(Map<String, Object> model) {
         model.put("doctor", new Doctor());
@@ -101,6 +85,12 @@ public class DoctorController {
 		doctorService.saveDoctorSpec(spec);
 		//return "user/userHome";
 		model.addAttribute("doctorEmail",doctorEmail);
+		return "doctor/login";
+		//return "doctor/doctorSchedule";
+	}
+	
+	@GetMapping("/schedule")
+	public String schedule() {
 		return "doctor/doctorSchedule";
 	}
 	
@@ -108,7 +98,7 @@ public class DoctorController {
 	public String submitschedule(DoctorSchedule doctorSchedule) throws IOException {
 		//doctorSchedule.setDoctorEmail(doctorEmail);
 		doctorService.saveDoctorSchedule(doctorSchedule);
-		return "user/userHome";
+		return "doctor/welcome";
 	}
 
 }

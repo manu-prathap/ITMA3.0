@@ -1,9 +1,17 @@
 package com.Itma.model;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,9 +21,13 @@ import com.Itma.repository.DoctorSpecializationRepository;
 
 
 
+
 @Service
 @Transactional
 public class DoctorDao implements IDoctorDao {
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Autowired
 	DoctorRepository doctorRepository;
@@ -30,7 +42,8 @@ public class DoctorDao implements IDoctorDao {
 	public boolean saveDoctor(Doctor doctor) throws IOException {
 		try {
 			if (doctor != null) {
-				doctor.setPassword(hashPassword(doctor.getPassword()));
+				//doctor.setPassword(hashPassword(doctor.getPassword()));
+				doctor.setPassword(bCryptPasswordEncoder.encode(doctor.getPassword()));
 				doctorRepository.save(doctor);
 				return true;
 			}
@@ -41,9 +54,9 @@ public class DoctorDao implements IDoctorDao {
 		return false;
 	}
 	
-	private String hashPassword(String plainTextPassword){
-		return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
-	}
+	//private String hashPassword(String plainTextPassword){
+		//return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
+	//}
 	
 
 	@Override
@@ -97,8 +110,7 @@ public class DoctorDao implements IDoctorDao {
 		
 	}
 
+	}
 
-	
-	
 
-}
+

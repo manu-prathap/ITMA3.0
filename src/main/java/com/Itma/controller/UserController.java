@@ -66,10 +66,7 @@ public class UserController {
 		
 		return "user/userLogin";
 	}
-	
-	
-	
-	
+		
 	
 	//password hashing
 	private String hashPassword(String plainTextPassword){
