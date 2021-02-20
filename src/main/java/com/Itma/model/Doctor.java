@@ -1,11 +1,16 @@
 package com.Itma.model;
 
 import java.sql.Date;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
@@ -20,7 +25,6 @@ public class Doctor{
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 	
-	@Column(unique = true)
 	@Field
 	private String doctorEmail;
 	
@@ -42,6 +46,10 @@ public class Doctor{
 	
 	@Field
 	private String streetAddress;
+	
+	@OneToMany(mappedBy = "doctor")
+	private List<DoctorSpecialization> specializations;
+	
 	
 	public int getId() {
 		return id;

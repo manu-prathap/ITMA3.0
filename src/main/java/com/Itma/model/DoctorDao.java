@@ -87,7 +87,8 @@ public class DoctorDao implements IDoctorDao {
 	@Override
 	public List<DoctorSpecialization> fetchDoctorSpecialization(String doctorEmail) {
 		// TODO Auto-generated method stub
-		return specRepository.findBydoctorEmail(doctorEmail);
+		//return specRepository.findBydoctorEmail(doctorEmail);
+		return null;
 	}
 
 

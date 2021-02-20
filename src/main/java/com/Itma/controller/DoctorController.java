@@ -26,7 +26,7 @@ import com.Itma.model.DoctorSpecialization;
 @RequestMapping("doctor")
 public class DoctorController {
 	
-	public static String uploadDirectory = System.getProperty("user.dir") + "/uploads";
+	public static String uploadDirectory = System.getProperty("user.dir") + "/uploads/doctor";
 		
 	@Autowired
 	DoctorDao doctorService;

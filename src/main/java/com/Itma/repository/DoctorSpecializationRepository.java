@@ -9,6 +9,6 @@ import com.Itma.model.DoctorSpecialization;
 @Repository
 public interface DoctorSpecializationRepository extends JpaRepository<DoctorSpecialization, String> {
 
-	public List<DoctorSpecialization> findBydoctorEmail(String doctorEmail);
+	List<DoctorSpecialization> findBydoctorDoctorEmail(String doctorEmail);
 	
 }

@@ -6,10 +6,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
 
 @Entity
-
+@Indexed
 public class DoctorSpecialization{
 	
 
@@ -18,8 +23,8 @@ public class DoctorSpecialization{
     @GeneratedValue
     private Long id;
 	
-	String doctorEmail;
-	
+	//String doctorEmail;
+	@Field
 	String specialization;
 	
 	@Column(nullable = false)
@@ -37,6 +42,10 @@ public class DoctorSpecialization{
 	@Column(nullable = false)
 	private Timestamp createdDate;
 	
+	
+	@ManyToOne
+	@JoinColumn(name="doctorEmail", referencedColumnName = "doctorEmail", nullable = false)
+	private Doctor doctor;
 
 	public Long getId() {
 		return id;
@@ -46,13 +55,13 @@ public class DoctorSpecialization{
 		this.id = id;
 	}
 
-	public String getDoctorEmail() {
-		return doctorEmail;
-	}
-
-	public void setDoctorEmail(String doctorEmail) {
-		this.doctorEmail = doctorEmail;
-	}
+//	public String getDoctorEmail() {
+//		return doctorEmail;
+//	}
+//
+//	public void setDoctorEmail(String doctorEmail) {
+//		this.doctorEmail = doctorEmail;
+//	}
 
 	public String getSpecialization() {
 		return specialization;
