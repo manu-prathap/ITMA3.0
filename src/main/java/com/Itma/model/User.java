@@ -62,6 +62,8 @@ public class User {
 	private boolean enabled = true;
 
 	
+	public boolean getEnabled() {return enabled;}
+	
 	public String getGender() {
 		return gender;
 	}
