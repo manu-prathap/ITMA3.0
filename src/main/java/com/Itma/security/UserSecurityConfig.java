@@ -62,8 +62,17 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 		http.authorizeRequests()
 		    .antMatchers("/user/register").permitAll()
-		    .antMatchers("/user/login").permitAll()
-		    .antMatchers("/user/**").hasRole("USER");
+		    .antMatchers("/user/submit").permitAll()
+		    .antMatchers("/user/loginsuccess").permitAll()
+		    .antMatchers("/user/**").hasRole("USER")
+		    .antMatchers("/").permitAll()
+		    .and()
+		    .formLogin()
+		     .usernameParameter("email")
+		     .defaultSuccessUrl("/user/login")
+		     .permitAll()
+		     .and()
+		     .logout().logoutSuccessUrl("/").permitAll();
 		    
 		
 	}

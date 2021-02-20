@@ -92,7 +92,7 @@ public class UserController {
 	
 
 	
-	@GetMapping("/login/search")
+	@GetMapping("/search")
 	public String search(@RequestParam(value = "query", required = false) String searchTerm, Map<String, Object> model) {
 		
 		List<Doctor> searchResults = null; 
