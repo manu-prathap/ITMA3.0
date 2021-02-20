@@ -2,6 +2,8 @@ package com.Itma.controller;
 
 
 import java.io.IOException;
+
+
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +22,7 @@ import com.Itma.model.User;
 import com.Itma.model.UserDao;
 import com.Itma.repository.UserRepository;
 
+
 import com.Itma.model.Admin;
 
 
@@ -34,6 +37,8 @@ public class AdminController {
 	
 	@Autowired
 	UserRepository userRepo;
+	
+	
 	
 	
 	@GetMapping("/register")

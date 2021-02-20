@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+   <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,10 +23,10 @@
 					class="fa fa-caret-square-o-down" aria-hidden="true"></i></a></li>
 			<li><a class="w3-cyan " href="#"><i class="fa fa-home"></i>
 					HOME </a></li>
-			<li class="w3-hide-small"><a href="admin/USER"
+			<li class="w3-hide-small"><a href="${contextPath}/admin/userLog"
 				style="display: inline-block"><i class="fa fa-list"
 					aria-hidden="true"></i> User</a></li>
-			<li class="w3-hide-small"><a href="admin/DOCTOR"
+			<li class="w3-hide-small"><a href="${contextPath}/admin/doctorLog"
 				style="display: inline-block"><i class="fa fa-list"
 					aria-hidden="true"></i> Doctor</a></li>
 			<li class="w3-hide-small" style="float: right"><a href="#"><i
