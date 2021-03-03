@@ -57,7 +57,9 @@ public class DoctorController {
 		String fileType = file.getContentType();
 		long size = file.getSize();
 		String fileSize = String.valueOf(size);
+		
 		Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());		
+		
 		BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
 		stream.write(file.getBytes());
 		stream.close();
@@ -69,7 +71,7 @@ public class DoctorController {
 		spec.setFileSize(fileSize);
 		spec.setCreatedDate(currentTimestamp);
 		doctorService.saveDoctorSpec(spec);
-		return "user/userHome";
+		return "index";
 	}
 	
 	@GetMapping("/login")
