@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +31,9 @@ public class DoctorController {
 		
 	@Autowired
 	DoctorDao doctorService;
+	
+	@Autowired
+	BCryptPasswordEncoder encoder;
 
 	@GetMapping("/register")
 	public String register(Map<String, Object> model) {
@@ -41,8 +45,13 @@ public class DoctorController {
 	public String submit(Doctor doctor,
 			@RequestParam("specialization") final String specialization,
 			final @RequestParam("file") MultipartFile file) throws IOException {
+		
 		DoctorSpecialization spec=new DoctorSpecialization();
+		
+		doctor.setPassword(encoder.encode(doctor.getPassword()));
 		doctorService.saveDoctor(doctor);
+		
+		
 		String fileName = file.getOriginalFilename();
 		String filePath = Paths.get(uploadDirectory, fileName).toString();
 		String fileType = file.getContentType();
@@ -62,4 +71,20 @@ public class DoctorController {
 		doctorService.saveDoctorSpec(spec);
 		return "user/userHome";
 	}
+	
+	@GetMapping("/login")
+	public String login(String email, Map<String, Object> model) {
+		
+		Doctor doctor = doctorService.fetchById(email);
+		
+		String name = "Dr "+doctor.getFirstName();
+		
+		model.put("doctor",doctor);
+		model.put("name", name);
+		
+		return "doctor/home";
+		
+	}
+	
+	
 }

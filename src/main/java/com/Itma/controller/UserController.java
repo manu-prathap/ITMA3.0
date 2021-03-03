@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,8 @@ public class UserController {
 	@Autowired
 	HibernateSearchClass hibernateSearch;
 	
+	@Autowired
+	BCryptPasswordEncoder encoder;
 	
 	
 	@GetMapping("/register")
@@ -44,7 +47,7 @@ public class UserController {
 		User user = new User();
 		user.setEmail(userForm.getEmail());
 		user.setPhoneNo(userForm.getPhoneNo());
-		user.setPassword(hashPassword(userForm.getPassword())); //hashing password
+		user.setPassword(encoder.encode(userForm.getPassword())); //hashing password
 		user.setFirstName(userForm.getFirstName());
 		user.setLastName(userForm.getLastName());
 		user.setDob(userForm.getDob());
@@ -114,9 +117,5 @@ public class UserController {
 	} 
 	
 	
-	//password hashing
-	private String hashPassword(String plainTextPassword){
-        return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
-    }
-	
+
 }

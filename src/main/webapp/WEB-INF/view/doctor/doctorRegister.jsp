@@ -67,7 +67,7 @@
 
 <div class = "row">
 <div class = "form-group">
-<label for="specialization">specializations</label><br />
+<label for="specialization">specializations (add one for now)</label><br />
 <input type="text" name = "specialization" required/><br />
 
 <label for="id">Upload any ID Document</label>

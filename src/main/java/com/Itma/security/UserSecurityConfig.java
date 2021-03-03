@@ -72,7 +72,8 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 		     .defaultSuccessUrl("/user/login")
 		     .permitAll()
 		     .and()
-		     .logout().logoutSuccessUrl("/").permitAll();
+		     .logout().logoutSuccessUrl("/").permitAll()
+		     .and().csrf().disable();
 		    
 		
 	}
