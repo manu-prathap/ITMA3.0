@@ -49,7 +49,7 @@
 <div class = "form-group">
 
 <form:label path="dob">Dob</form:label>
-<form:input path="dob" type="date" required = "true"/><br />
+<form:input path="dob" type="date" required = "true" min = "1921-01-01" max = "2003-01-01"/><br />
 
 </div>
 

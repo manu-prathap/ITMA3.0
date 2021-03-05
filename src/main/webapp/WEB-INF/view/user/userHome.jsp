@@ -10,31 +10,60 @@
 </head>
 <body>
 <h3>Welcome ${name}</h3>
-<a href="#">Appointments<span class="badge">${ scheduleNumber }</span></a><br>
-<form method = "GET" action="login/search" name = "query" class="search-bar">
-<input type = "text" placeholder = "Search"/><input type = "submit" value = "search"/>
-</form>
 
+<div class = "row">
+
+<div class = "col-md-4">
+<a href="#">Appointments<span class="badge">${ scheduleNumber }</span></a><br>
+</div>
+
+<div class = "col-md-4">
+<a href="details">View/Edit Details</a><br>
+</div>
+
+<div class = "col-md-4">
+<a href="#">Diagnostics</a>
+</div>
+
+
+
+</div>
+<!-- Search bar -->
+<form method = "GET" action="search" class="search-bar">
+<input type = "text" placeholder = "Search" name = "query"/><input type = "submit" value = "search"/>
+</form>
+<!-- Search bar end -->
+
+
+<!-- Search panel start -->
 <c:if test = "${not empty doctors}">
-<c:forEach var = "doctor" items="${ doctors }" >
-<table>
+
+<table class = "table">
 <tr>
-<th>
+<th scope = "col">
 Name
 </th>
-<th>
+<th scope = "col">
 Location
 </th>
+<th scope = "col">
+Specialization
+</th>
+<th scope = "col">
+</th>
 </tr>
+<c:forEach var = "doctor" items="${ doctors }" >
 <tr>
 <td>${ doctor.firstName }</td>
-<td>${ doctor.streetAddress }  ${ doctor.district }</td>
+<td>${ doctor.streetAddress } &nbsp;  ${ doctor.district }</td>
+<td><c:forEach var = "doctorspecialization" items = "${ doctor.specializations }">${ doctorspecialization.specialization }<br /></c:forEach></td>
+<td><a href="details?id=${ doctor.id }">View Details</a></td>
 </tr>
+<!-- Search panel end -->
 
-</table>
 
 </c:forEach>
-
+</table>
 </c:if>
 
 

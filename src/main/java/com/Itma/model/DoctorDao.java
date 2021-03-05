@@ -84,6 +84,7 @@ public class DoctorDao implements IDoctorDao {
 		return false;
 
 	}
+	
 	@Override
 	public List<DoctorSpecialization> fetchDoctorSpecialization(String doctorEmail) {
 		// TODO Auto-generated method stub
@@ -92,6 +93,15 @@ public class DoctorDao implements IDoctorDao {
 	}
 
 
+	@Override
+	public Doctor fetchByIntId(int id) {
+		
+		Doctor doctor = doctorRepository.findByid(id);
+		
+		return doctor;
+		
+	}
+	
 	
 	
 

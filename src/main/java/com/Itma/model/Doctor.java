@@ -1,5 +1,6 @@
 package com.Itma.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.hibernate.search.annotations.ContainedIn;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
@@ -19,8 +21,15 @@ import org.hibernate.search.annotations.Indexed;
 
 @Indexed
 @Entity
-public class Doctor{
+public class Doctor implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -47,10 +56,20 @@ public class Doctor{
 	@Field
 	private String streetAddress;
 	
+	
+	@ContainedIn
 	@OneToMany(mappedBy = "doctor")
 	private List<DoctorSpecialization> specializations;
 	
 	
+	public List<DoctorSpecialization> getSpecializations() {
+		return specializations;
+	}
+
+	public void setSpecializations(List<DoctorSpecialization> specializations) {
+		this.specializations = specializations;
+	}
+
 	public int getId() {
 		return id;
 	}

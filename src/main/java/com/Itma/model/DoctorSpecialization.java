@@ -3,6 +3,7 @@ package com.Itma.model;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,10 +12,12 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 
 
 @Entity
 @Indexed
+@Embeddable
 public class DoctorSpecialization{
 	
 
@@ -45,7 +48,16 @@ public class DoctorSpecialization{
 	
 	@ManyToOne
 	@JoinColumn(name="doctorEmail", referencedColumnName = "doctorEmail", nullable = false)
+	@IndexedEmbedded
 	private Doctor doctor;
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
 
 	public Long getId() {
 		return id;

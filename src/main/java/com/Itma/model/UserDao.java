@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.Itma.repository.UserDetailsRepository;
 import com.Itma.repository.UserRepository;
 
 @Service
@@ -12,6 +13,9 @@ public class UserDao implements IUserDao {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	UserDetailsRepository detailsRepository;
 	
 	
 	
@@ -59,6 +63,15 @@ public class UserDao implements IUserDao {
 	public User fetchByPhoneNo(int phoneNo) {
 		User user = userRepository.findByphoneNo(phoneNo);
 		return user;
+	}
+	
+	@Override
+	public UserDetails fetchUserDetails(String email) {
+		
+		UserDetails details = detailsRepository.findByuserEmail(email);
+		
+		return details;	   
+		
 	}
 
 }

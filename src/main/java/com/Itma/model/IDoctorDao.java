@@ -17,4 +17,6 @@ public boolean saveDoctor(Doctor doctor) throws IOException;
 	 boolean saveDoctorSpec(DoctorSpecialization doctorSpec) throws IOException;
 
      //List<Doctor> search(String keyword);
+	 
+	 public Doctor fetchByIntId(int id);
 }

@@ -70,6 +70,7 @@ public class DoctorController {
 		spec.setFileType(fileType);
 		spec.setFileSize(fileSize);
 		spec.setCreatedDate(currentTimestamp);
+		spec.setDoctor(doctor);
 		doctorService.saveDoctorSpec(spec);
 		return "index";
 	}

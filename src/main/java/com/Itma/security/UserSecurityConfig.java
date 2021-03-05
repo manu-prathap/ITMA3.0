@@ -60,20 +60,21 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 	
-		http.authorizeRequests()
-		    .antMatchers("/user/register").permitAll()
-		    .antMatchers("/user/submit").permitAll()
-		    .antMatchers("/user/login").permitAll()
-		    .antMatchers("/user/**").hasRole("USER")
-		    .antMatchers("/").permitAll()
-		    .and()
-		    .formLogin()
-		     .usernameParameter("email")
-		     .defaultSuccessUrl("/user/loginsuccess")
-		     .permitAll()
-		     .and()
-		     .logout().logoutSuccessUrl("/").permitAll()
-		     .and().csrf().disable();
+//		http.authorizeRequests()
+//		    .antMatchers("/user/register").permitAll()
+//		    .antMatchers("/user/submit").permitAll()
+//		    .antMatchers("/user/").permitAll()
+//		    .antMatchers("/user/**").access("hasRole('USER')")
+//		    .antMatchers("/").permitAll()
+//		    .and()
+//		    .formLogin()
+//		     .usernameParameter("email")
+//		     .defaultSuccessUrl("/user/loginSuccess")
+//		     .permitAll()
+//		     .and()
+//		     .logout().invalidateHttpSession(true).clearAuthentication(true)
+//		     .logoutSuccessUrl("/").permitAll()
+//		     .and().csrf().disable();
 		    
 		
 	}
