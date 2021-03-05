@@ -18,8 +18,9 @@
 <label for="doctorEmail">Doctor Email</label>
 <input type="text" value=" ${doctorEmail}" name = "doctorEmail"/><br />
 
-<label for="day">Day:</label>
-<input type="text" name = "day"required /><br />
+<label for="doctorEmail">Date</label>
+<input type="date" name="date"><br/>
+
 
 <label for="startTime">Start time</label>
 <input  type="time" name = "startTime" step="1" required /><br />

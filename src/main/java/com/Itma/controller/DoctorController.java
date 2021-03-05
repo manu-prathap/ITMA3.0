@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.Map;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -94,9 +95,19 @@ public class DoctorController {
 		return "doctor/doctorSchedule";
 	}
 	
+	@PostMapping("/saveSchedule1")
+	public @ResponseBody ResponseEntity<?> submitschedule1(DoctorSchedule doctorSchedule,Doctor doctor)
+	{
+		//doctorSchedule.setDoctor(doctor);
+		doctorService.saveDoctorSchedule(doctorSchedule);
+		//return "doctor/welcome";
+		return new ResponseEntity<>( HttpStatus.OK);
+	}
+	
 	@PostMapping("/saveSchedule")
 	public String submitschedule(DoctorSchedule doctorSchedule) throws IOException {
 		//doctorSchedule.setDoctorEmail(doctorEmail);
+		//doctorSchedule.setDoctor(doctor);
 		doctorService.saveDoctorSchedule(doctorSchedule);
 		return "doctor/welcome";
 	}

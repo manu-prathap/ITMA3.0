@@ -11,6 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "schedule")
 public class DoctorSchedule {
@@ -19,11 +23,33 @@ public class DoctorSchedule {
     @GeneratedValue
     private Long schedule_id;
 	
+
 	@Column(name = "doctorEmail")
-	private String doctorEmail;;
+	private String doctorEmail;
 	
-	@Column(name = "day")
-	private String day;
+	public String getDoctorEmail() {
+		return doctorEmail;
+	}
+
+	public void setDoctorEmail(String doctorEmail) {
+		this.doctorEmail = doctorEmail;
+	}
+
+
+	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+	@Column(name = "date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate date;
+	
+	
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
 	
 	@Column(name = "startTime")
 	private Time startTime;
@@ -40,13 +66,7 @@ public class DoctorSchedule {
 	@Column(name = "maxCapacity")
 	private int maxCapacity;
 	
-	public String getDay() {
-		return day;
-	}
 
-	public void setDay(String day) {
-		this.day = day;
-	}
 
 	public Long getSchedule_id() {
 		return schedule_id;
@@ -56,13 +76,7 @@ public class DoctorSchedule {
 		this.schedule_id = schedule_id;
 	}
 
-	public String getDoctorEmail() {
-		return doctorEmail;
-	}
 
-	public void setDoctorEmail(String doctorEmail) {
-		this.doctorEmail = doctorEmail;
-	}
 
 	public Time getStartTime() {
 		return startTime;
