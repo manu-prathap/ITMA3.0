@@ -68,10 +68,11 @@ public class UserDao implements IUserDao {
 	@Override
 	public UserDetails fetchUserDetails(String email) {
 		
-		UserDetails details = detailsRepository.findByuserEmail(email);
+		//UserDetails details = detailsRepository.findByuserEmail(email);
 		
-		return details;	   
+		//return details;	   
 		
+		return null;
 	}
 
 }

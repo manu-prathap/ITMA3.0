@@ -10,7 +10,7 @@ import com.Itma.model.UserDetails;
 public interface UserDetailsRepository extends JpaRepository<UserDetails, Integer> {
 	
 	
-	UserDetails findByuserEmail(String email);
+	//UserDetails findByuserEmail(String email);
 	List<UserDetails> findBybloodGroup(String bloodGroup);
 
 }

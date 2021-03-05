@@ -84,10 +84,10 @@ public class UserController {
 	
 	
 	@GetMapping("/login")
-	public String login(Map<String, Object> model) {
+	public String login(String email, Map<String, Object> model) {
 		
 		
-		User user = userDao.fetchById(1);
+		User user = userDao.fetchByEmail(email);
 		String name = user.getFirstName();
 		
 		HttpSession session = httpSessionFactory.getObject();
