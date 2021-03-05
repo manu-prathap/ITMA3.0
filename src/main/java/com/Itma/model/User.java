@@ -1,6 +1,7 @@
 package com.Itma.model;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,14 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,8 +38,13 @@ public class User {
 	
 	private String idDoc;   //id document picture location
 	
-	@Temporal(TemporalType.DATE)
+	
+	@Column(name = "dob")
 	private Date dob;
+	
+    String gender = "Not Specified";
+    
+    
 
 	//Address
 	
@@ -59,6 +63,16 @@ public class User {
 	private boolean enabled = true;
 
 	
+	public boolean getEnabled() {return enabled;}
+	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	public String getIdDoc() {
 		return idDoc;
 	}

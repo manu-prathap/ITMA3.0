@@ -57,6 +57,13 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jasper -->
 <dependency>
     <groupId>org.apache.tomcat</groupId>
@@ -80,9 +87,75 @@
 <dependency>
     <groupId>org.springframework.session</groupId>
     <artifactId>spring-session-jdbc</artifactId>
+
 </dependency>		
 		
 		
+
+
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
+ </dependency>
+ 
+ <!-- https://mvnrepository.com/artifact/org.mindrot/jbcrypt -->
+<dependency>
+    <groupId>org.mindrot</groupId>
+    <artifactId>jbcrypt</artifactId>
+    <version>0.4</version>
+</dependency>
+ 		
+
+<!-- https://mvnrepository.com/artifact/javax.el/javax.el-api -->
+<dependency>
+    <groupId>javax.el</groupId>
+    <artifactId>javax.el-api</artifactId>
+    <version>3.0.0</version>
+</dependency>
+
+ <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search-engine -->
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-search-engine</artifactId>
+    <version>5.11.8.Final</version>
+</dependency>
+
+
+
+<dependency>
+		<groupId>org.springframework.session</groupId>
+		<artifactId>spring-session-data-redis</artifactId>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-core</artifactId>
+    <version>6.0.0.Alpha6</version>
+    <type>pom</type>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search-orm -->
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-search-orm</artifactId>
+    <version>5.11.8.Final</version>
+</dependency>
+
+
+<!-- <dependency>
+   <groupId>org.hibernate.search</groupId>
+   <artifactId>hibernate-search-mapper-orm</artifactId>
+   <version>6.0.1.Final</version>
+</dependency>
+
+<dependency>
+   <groupId>org.hibernate.search</groupId>
+   <artifactId>hibernate-search-backend-lucene</artifactId>
+   <version>6.0.1.Final</version>
+</dependency> -->
+
+
 		
 	</dependencies>
 
