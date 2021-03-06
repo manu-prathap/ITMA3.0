@@ -12,7 +12,7 @@ public interface IUserDao {
 	List<User> fetchByLocation(String location);
 	User fetchByPhoneNo(int phoneNo);
 	
-	UserDetails fetchUserDetails(String email);
+	UserInformation fetchUserInformation(String email);
 	
 	
 	

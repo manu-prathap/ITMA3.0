@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.Itma.repository.UserDetailsRepository;
+import com.Itma.repository.UserInformationRepository;
 import com.Itma.repository.UserRepository;
 
 @Service
@@ -15,7 +15,7 @@ public class UserDao implements IUserDao {
 	UserRepository userRepository;
 	
 	@Autowired
-	UserDetailsRepository detailsRepository;
+	UserInformationRepository infoRepository;
 	
 	
 	
@@ -66,13 +66,13 @@ public class UserDao implements IUserDao {
 	}
 	
 	@Override
-	public UserDetails fetchUserDetails(String email) {
+	public UserInformation fetchUserInformation(String email) {
 		
-		//UserDetails details = detailsRepository.findByuserEmail(email);
+		UserInformation information = infoRepository.findByuserEmail(email);
 		
-		//return details;	   
+		return information;	   
 		
-		return null;
+		
 	}
 
 }

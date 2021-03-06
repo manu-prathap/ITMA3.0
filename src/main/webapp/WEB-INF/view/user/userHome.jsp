@@ -18,7 +18,7 @@
 </div>
 
 <div class = "col-md-4">
-<a href="details">View/Edit Details</a><br>
+<a href="userdetails">View/Edit Details</a><br>
 </div>
 
 <div class = "col-md-4">

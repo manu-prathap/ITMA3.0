@@ -69,17 +69,17 @@ public class User implements Serializable {
 	private boolean enabled = true;
 	
 	
-	@OneToOne(mappedBy = "user")
-	private UserDetails userDetails;
-
-	
-	public UserDetails getUserDetails() {
-		return userDetails;
-	}
-
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
-	}
+//	@OneToOne(mappedBy = "user")
+//	private UserDetails userDetails;
+//
+//	
+//	public UserDetails getUserDetails() {
+//		return userDetails;
+//	}
+//
+//	public void setUserDetails(UserDetails userDetails) {
+//		this.userDetails = userDetails;
+//	}
 
 	public boolean getEnabled() {return enabled;}
 	

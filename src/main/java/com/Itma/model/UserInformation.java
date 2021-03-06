@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 
 
 @Entity
-public class UserDetails implements Serializable {
+public class UserInformation implements Serializable {
 	
    /**
     * 

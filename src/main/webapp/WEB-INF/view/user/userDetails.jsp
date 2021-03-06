@@ -89,14 +89,17 @@ BMI:
 <div class = "col-md-6">
 <input type = "submit" value = "Submit" id="submit" disabled>
 </div>
+
 <div class = "col-md-6">
-<button onclick = "enableEdit()" >Edit</button>
+<button type = "button" onclick = "enableEdit()" >Edit</button> <!-- Set button type to "button" as its submit by default -->
 </div>
 </div>
-
-
 </form>
 </div> <!-- End of form-group -->
+
+
+
+
 
 
 

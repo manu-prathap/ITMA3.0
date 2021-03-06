@@ -28,7 +28,8 @@ import com.Itma.model.DoctorDao;
 import com.Itma.model.HibernateSearchClass;
 import com.Itma.model.User;
 import com.Itma.model.UserDao;
-import com.Itma.model.UserDetails;
+import com.Itma.model.UserInformation;
+
 
 @Controller
 @RequestMapping("user")
@@ -86,7 +87,7 @@ public class UserController {
 	@GetMapping("/login")
 	public String login(String email, Map<String, Object> model) {
 		
-		
+		email = "bugsbunny@email.com";
 		User user = userDao.fetchByEmail(email);
 		String name = user.getFirstName();
 		
@@ -173,31 +174,36 @@ public class UserController {
 	
 	@GetMapping("/userdetails")
 	
-	public ModelAndView viewUserDetails(HttpSession session, Map<String, Object> model) {
+	public String viewUserDetails(HttpSession session, Map<String, Object> model) {
 		
 		User user = (User) session.getAttribute("user");
 		
 		
-		UserDetails details = userDao.fetchUserDetails(user.getEmail());
+		UserInformation info = userDao.fetchUserInformation(user.getEmail());
 		
-		model.put("details", details);
-		model.put("name", user.getFirstName());
+		if(info!=null) {
 		
-		double height = details.getHeight();
-		double weight = details.getWeight();
+		model.put("details", info);        //details is info for the view jsp
+		
+		
+		double height = info.getHeight();
+		double weight = info.getWeight();
 		
 		double bmi = weight/(height)*(height);
 		
+		
+	
+		model.put("bmi", bmi);	
+		
+		}
+		model.put("name", user.getFirstName());
 		model.put("user", user);
-		model.put("bmi", bmi);
-		
-		
-		return new ModelAndView("redirect: /details");  //ModelAndView 
+		return "user/userDetails";  //View 
 	}
 	
 	
-	@PostMapping("detailsUpdate")
-	public String updateDetails(HttpSession session, 
+	@PostMapping("/detailsUpdate")    //updating of user details
+	public ModelAndView updateDetails(HttpSession session, 
 			@RequestParam("height") double height,
 			@RequestParam("weight") double weight,
 			@RequestParam("bloodgroup") String bloodGroup,	
@@ -206,15 +212,18 @@ public class UserController {
 		
 		User user = (User) session.getAttribute("user");
 		
-		UserDetails details = userDao.fetchUserDetails(user.getEmail());
+		UserInformation info = userDao.fetchUserInformation(user.getEmail());
 		
-		details.setHeight(height);
-		details.setWeight(weight);
-		details.setProfession(profession);
-		details.setBloodGroup(bloodGroup);
-		details.setUser(user);
+		info.setHeight(height);
+		info.setWeight(weight);
+		info.setProfession(profession);
+		info.setBloodGroup(bloodGroup);
+		info.setUser(user);
 		
-		return "user/userDetails";
+		
+		return new ModelAndView("redirect: /userdetails");  //redirect to previous handler ^^^
+		
+		//return "user/userDetails";
 		
 	}
 	
