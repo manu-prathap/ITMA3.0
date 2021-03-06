@@ -12,8 +12,11 @@
 
 function enableEdit(){
 	
-	document.getElementByClassName("edit").removeAttribute("readonly");
+	let el = document.getElementsByClassName("edit");
 	
+	for(var i=0; i<el.length; i++)
+		 el[i].removeAttribute("readonly");
+
 	document.getElementById("submit").removeAttribute("disabled");
 	
 	

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 
@@ -33,7 +34,7 @@ private String profession;
 User user;
 
 
-@OneToOne
+@ManyToOne
 @JoinColumn(name="doctorEmail", referencedColumnName="doctorEmail", nullable = true)
 Doctor doctor;
 

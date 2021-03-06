@@ -61,7 +61,20 @@ public class Doctor implements Serializable{
 	@OneToMany(mappedBy = "doctor")
 	private List<DoctorSpecialization> specializations;
 	
+	@OneToMany(mappedBy = "doctor")
+	private List<UserDiagnostics> userDiagnostics;
 	
+	
+	
+	
+	public List<UserDiagnostics> getUserDiagnostics() {
+		return userDiagnostics;
+	}
+
+	public void setUserDiagnostics(List<UserDiagnostics> userDiagnostics) {
+		this.userDiagnostics = userDiagnostics;
+	}
+
 	public List<DoctorSpecialization> getSpecializations() {
 		return specializations;
 	}

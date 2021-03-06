@@ -2,12 +2,14 @@ package com.Itma.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -70,16 +72,30 @@ public class User implements Serializable {
 	
 	
 //	@OneToOne(mappedBy = "user")
-//	private UserDetails userDetails;
-//
-//	
-//	public UserDetails getUserDetails() {
-//		return userDetails;
+//	private UserInformation userInformation;
+	
+	@OneToMany(mappedBy = "user")
+	private List<UserDiagnostics> userDiagnostics;
+
+	
+//	public UserInformation getUserInformation() {
+//		return userInformation;
 //	}
 //
-//	public void setUserDetails(UserDetails userDetails) {
-//		this.userDetails = userDetails;
+//	public void setUserInformation(UserInformation userInformation) {
+//		this.userInformation = userInformation;
 //	}
+
+	
+	
+	
+	public List<UserDiagnostics> getUserDiagnostics() {
+		return userDiagnostics;
+	}
+
+	public void setUserDiagnostics(List<UserDiagnostics> userDiagnostics) {
+		this.userDiagnostics = userDiagnostics;
+	}
 
 	public boolean getEnabled() {return enabled;}
 	

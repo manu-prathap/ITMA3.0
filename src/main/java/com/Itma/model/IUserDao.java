@@ -13,7 +13,9 @@ public interface IUserDao {
 	User fetchByPhoneNo(int phoneNo);
 	
 	UserInformation fetchUserInformation(String email);
+	UserInformation setUserInformation(UserInformation info);
 	
+	List<UserDiagnostics> fetchDiagnostics(String email);
 	
 	
 

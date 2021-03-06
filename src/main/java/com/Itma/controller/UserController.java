@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.Itma.model.Doctor;
 import com.Itma.model.DoctorDao;
@@ -189,7 +191,7 @@ public class UserController {
 		double height = info.getHeight();
 		double weight = info.getWeight();
 		
-		double bmi = weight/(height)*(height);
+		double bmi = ((weight/(height*height))*10000);
 		
 		
 	
@@ -203,28 +205,38 @@ public class UserController {
 	
 	
 	@PostMapping("/detailsUpdate")    //updating of user details
-	public ModelAndView updateDetails(HttpSession session, 
-			@RequestParam("height") double height,
-			@RequestParam("weight") double weight,
-			@RequestParam("bloodgroup") String bloodGroup,	
-			@RequestParam("profession") String profession,
-			Map<String, Object> model) {
+	public void updateDetails(HttpSession session, 
+			@RequestParam(value = "height") double height,
+			@RequestParam(value = "weight") double weight,
+			@RequestParam(value = "bloodgroup") String bloodGroup,	
+			@RequestParam(value = "profession") String profession,
+			Map<String, Object> model,
+			HttpServletResponse response) throws IOException {
 		
 		User user = (User) session.getAttribute("user");
 		
 		UserInformation info = userDao.fetchUserInformation(user.getEmail());
+		
+		if(info == null) {
+			
+			info = new UserInformation();
+			
+		}
+		
 		
 		info.setHeight(height);
 		info.setWeight(weight);
 		info.setProfession(profession);
 		info.setBloodGroup(bloodGroup);
 		info.setUser(user);
+		userDao.setUserInformation(info);
 		
+		viewUserDetails(session, model); //redirect to previous handler ^^^
 		
-		return new ModelAndView("redirect: /userdetails");  //redirect to previous handler ^^^
+		response.sendRedirect("userdetails");
 		
-		//return "user/userDetails";
-		
+		//return "redirect: userdetails";
+	
 	}
 	
 	
