@@ -6,7 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,7 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.Itma.model.Doctor;
 import com.Itma.model.DoctorDao;
+import com.Itma.model.DoctorSchedule;
 import com.Itma.model.DoctorSpecialization;
+
 
 
 
@@ -78,7 +83,7 @@ public class DoctorController {
 	}
 	
 	@GetMapping("/login")
-	public String login(String email, Map<String, Object> model) {
+	public String login(String email, Map<String, Object> model, HttpSession session) {
 		
 		Doctor doctor = doctorService.fetchById(email);
 		
@@ -86,10 +91,25 @@ public class DoctorController {
 		
 		model.put("doctor",doctor);
 		model.put("name", name);
-		
+		session.setAttribute("doctor", doctor);
 		return "doctor/home";
 		
 	}
+	
+	//handler that redirects to schedules viewer
+	@GetMapping("/schedules")
+	public String viewSchedules(Map<String, Object> model, 
+    HttpSession session){
+		
+		Doctor doctor = (Doctor)session.getAttribute("doctor");
+		
+		List<DoctorSchedule> scheduleList = doctorService.fetchDoctorSchedule(doctor.getDoctorEmail());
+		
+		model.put("scheduleList", scheduleList);
+		
+		return null;
+		
+	   }
 	
 	
 }
