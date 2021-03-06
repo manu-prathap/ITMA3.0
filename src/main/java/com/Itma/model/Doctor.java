@@ -65,7 +65,8 @@ public class Doctor implements Serializable{
 	private List<UserDiagnostics> userDiagnostics;
 	
 	
-	
+	@OneToMany(mappedBy = "doctor")
+	private List<DoctorSchedule> doctorSchedule;
 	
 	public List<UserDiagnostics> getUserDiagnostics() {
 		return userDiagnostics;

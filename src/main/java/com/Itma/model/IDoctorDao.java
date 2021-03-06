@@ -19,4 +19,6 @@ public boolean saveDoctor(Doctor doctor) throws IOException;
      //List<Doctor> search(String keyword);
 	 
 	 public Doctor fetchByIntId(int id);
+	 
+	 public List<DoctorSchedule> fetchDoctorSchedule(String doctorEmail);
 }

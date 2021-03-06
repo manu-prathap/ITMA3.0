@@ -6,6 +6,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.Itma.repository.DoctorRepository;
+import com.Itma.repository.DoctorScheduleRepository;
 import com.Itma.repository.DoctorSpecializationRepository;
 
 
@@ -22,6 +23,9 @@ public class DoctorDao implements IDoctorDao {
 	
 //	@Autowired
 //	DoctorSearchRepository searchRepository;
+	
+	@Autowired
+	DoctorScheduleRepository scheduleRepository;
 	
 
 	@Override
@@ -100,6 +104,15 @@ public class DoctorDao implements IDoctorDao {
 		
 		return doctor;
 		
+	}
+	
+	
+	@Override
+	public List<DoctorSchedule> fetchDoctorSchedule(String email){
+		
+		List<DoctorSchedule> schedules = scheduleRepository.findBydoctorDoctorEmail(email);
+		
+		return schedules;
 	}
 	
 	

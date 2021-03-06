@@ -21,7 +21,7 @@ public class DoctorSchedule {
 	
 	@Id
     @GeneratedValue
-    private Long schedule_id;
+    private Long scheduleId;
 	
 
 	@Column(name = "doctorEmail")
@@ -68,12 +68,12 @@ public class DoctorSchedule {
 	
 
 
-	public Long getSchedule_id() {
-		return schedule_id;
+	public Long getScheduleId() {
+		return scheduleId;
 	}
 
 	public void setSchedule_id(Long schedule_id) {
-		this.schedule_id = schedule_id;
+		this.scheduleId = schedule_id;
 	}
 
 

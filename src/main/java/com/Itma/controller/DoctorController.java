@@ -34,6 +34,8 @@ public class DoctorController {
 	
 	@Autowired
 	BCryptPasswordEncoder encoder;
+	
+
 
 	@GetMapping("/register")
 	public String register(Map<String, Object> model) {
