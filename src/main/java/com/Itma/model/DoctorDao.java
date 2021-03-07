@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.Itma.repository.DoctorRepository;
 import com.Itma.repository.DoctorScheduleRepository;
 import com.Itma.repository.DoctorSpecializationRepository;
+import com.Itma.repository.UserDoctorAppointmentRepository;
 
 
 
@@ -27,6 +28,8 @@ public class DoctorDao implements IDoctorDao {
 	@Autowired
 	DoctorScheduleRepository scheduleRepository;
 	
+	@Autowired
+    UserDoctorAppointmentRepository appointmentRepository;
 
 	@Override
 	public boolean saveDoctor(Doctor doctor) throws IOException {
@@ -129,5 +132,20 @@ public class DoctorDao implements IDoctorDao {
 		}
 	}
 	
+	public DoctorSchedule fetchScheduleById(int id) {
+		
+		DoctorSchedule schedule = scheduleRepository.findByscheduleId(id);
+		
+		return schedule;
+		
+	}	
+	
+	public List<UserDoctorAppointment> fetchAppointment(String email){
+		
+		List<UserDoctorAppointment> appointments = appointmentRepository.findBydoctorDoctorEmail(email);
+		
+		
+		return appointments;
+	}
 
 }

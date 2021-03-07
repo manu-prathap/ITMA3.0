@@ -21,7 +21,7 @@ public class DoctorSchedule {
 	
 	@Id
     @GeneratedValue
-    private Long scheduleId;	
+    private int scheduleId;	
 
 	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
 	@Column(name = "date")
@@ -87,11 +87,11 @@ public class DoctorSchedule {
 	
 
 
-	public Long getScheduleId() {
+	public int getScheduleId() {
 		return scheduleId;
 	}
 
-	public void setSchedule_id(Long schedule_id) {
+	public void setSchedule_id(int schedule_id) {
 		this.scheduleId = schedule_id;
 	}
 

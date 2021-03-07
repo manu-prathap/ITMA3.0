@@ -17,6 +17,8 @@ public interface IUserDao {
 	
 	List<UserDiagnostics> fetchDiagnostics(String email);
 	
+	List<UserDoctorAppointment> fetchAppointment(String email);
 	
+	UserDoctorAppointment submitAppointment(UserDoctorAppointment appointment);
 
 }

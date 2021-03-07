@@ -31,6 +31,7 @@ import com.Itma.model.DoctorSchedule;
 import com.Itma.model.HibernateSearchClass;
 import com.Itma.model.User;
 import com.Itma.model.UserDao;
+import com.Itma.model.UserDoctorAppointment;
 import com.Itma.model.UserInformation;
 
 
@@ -250,12 +251,39 @@ public class UserController {
 	      
 		           Doctor doctor = doctorDao.fetchByIntId(id);
 		           List<DoctorSchedule> scheduleList = doctorDao.fetchDoctorSchedule(doctor.getDoctorEmail());        
+		           
+//		           DoctorSchedule sched = scheduleList.get(0);
+//		           System.out.println(sched.getDayOfWeek());
 		           model.put("scheduleList", scheduleList);
 		           model.put("doctor", doctor);
 		           
 		        
-		            return null;
+		            return "user/userDoctorScheduleView";
 
           }
-
+	
+	
+	@GetMapping("/bookappointment")
+    public String bookAppointment(@RequestParam(value = "id")int scheduleId, 
+    		                      HttpSession session,
+    		                      Map<String, Object> model,
+    		                      UserDoctorAppointment appointment) {
+		
+		User user = (User)session.getAttribute("user");
+		DoctorSchedule schedule = doctorDao.fetchScheduleById(scheduleId);
+		Doctor doctor = schedule.getDoctor();
+		
+		appointment.setDoctor(doctor);
+		appointment.setSchedule(schedule);
+		appointment.setUser(user);
+		appointment.setUserStatus(true);
+		appointment.setDoctorStatus(true);
+		
+		userDao.submitAppointment(appointment);
+		
+		
+		return "user/userHome";
+		
+	} 
+	
 }

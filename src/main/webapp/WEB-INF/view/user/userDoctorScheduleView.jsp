@@ -10,8 +10,11 @@
 </head>
 
 <body>
+<h3>Welcome ${ user.firstName }</h3>
+<h4>The schedules of Dr ${doctor.firstName}:</h4>
 
-<table>
+
+<table class = "table">
 <tr>
 <th scope = "col">Day</th>
 <th scope = "col">From</th>
@@ -20,7 +23,7 @@
 <th scope = "col">Status</th>
 <th></th>
 </tr>
- <c:forEach var = "schedule" items = "${ schedules }">
+ <c:forEach var = "schedule" items = "${ scheduleList }">
    
     <c:if test ="${ schedule.dayOfWeek == 'Monday' }">
        <tr>
@@ -36,9 +39,13 @@
        <td>
        ${ schedule.consultationFee }
        </td>
-       <td>
-       ${ schedule.isAvailable }
-       </td>
+       <c:choose>
+         <c:when test = "${ schedule.isAvailable == 'true' }">
+          <td>Active</td>
+          <td><a href = "bookappointment?id=${ schedule.scheduleId }">Book Appointment</a></td>
+         </c:when>
+         <c:otherwise>Inactive</c:otherwise>
+       </c:choose>
        
        
      </tr>
@@ -55,13 +62,19 @@
        </td>
        <td>
         ${ schedule.endTime }
-       </td>
+       </td> 
        <td>
        ${ schedule.consultationFee }
        </td>
-       <td>
-       ${ schedule.isAvailable }
-       </td>
+       
+       <c:choose>
+         <c:when test = "${ schedule.isAvailable == 'true' }">
+          <td>Active</td>
+          <td><a href = "bookappointment?id=${ schedule.scheduleId }">Book Appointment</a></td>
+         </c:when>
+         <c:otherwise>Inactive</c:otherwise>
+       </c:choose>
+      
        
        
      </tr>
@@ -82,11 +95,13 @@
        <td>
        ${ schedule.consultationFee }
        </td>
-       <td>
-       ${ schedule.isAvailable }
-       </td>
-       
-       
+       <c:choose>
+         <c:when test = "${ schedule.isAvailable == 'true' }">
+          <td>Active</td>
+          <td><a href = "bookappointment?id=${ schedule.scheduleId }">Book Appointment</a></td>
+         </c:when>
+         <c:otherwise>Inactive</c:otherwise>
+       </c:choose>
      </tr>
    </c:if>
    
@@ -104,9 +119,13 @@
        <td>
        ${ schedule.consultationFee }
        </td>
-       <td>
-       ${ schedule.isAvailable }
-       </td>
+       <c:choose>
+         <c:when test = "${ schedule.isAvailable == 'true' }">
+          <td>Active</td>
+          <td><a href = "bookappointment?id=${ schedule.scheduleId }">Book Appointment</a></td>
+         </c:when>
+         <c:otherwise>Inactive</c:otherwise>
+       </c:choose>
        
        
      </tr>
@@ -126,9 +145,13 @@
        <td>
        ${ schedule.consultationFee }
        </td>
-       <td>
-       ${ schedule.isAvailable }
-       </td>
+       <c:choose>
+         <c:when test = "${ schedule.isAvailable == 'true' }">
+          <td>Active</td>
+          <td><a href = "bookappointment?id=${ schedule.scheduleId }">Book Appointment</a></td>
+         </c:when>
+         <c:otherwise>Inactive</c:otherwise>
+       </c:choose>
        
        
      </tr>
@@ -148,9 +171,13 @@
        <td>
        ${ schedule.consultationFee }
        </td>
-       <td>
-       ${ schedule.isAvailable }
-       </td>
+       <c:choose>
+         <c:when test = "${ schedule.isAvailable == 'true' }">
+          <td>Active</td>
+          <td><a href = "bookappointment?id=${ schedule.scheduleId }">Book Appointment</a></td>
+         </c:when>
+         <c:otherwise>Inactive</c:otherwise>
+       </c:choose>
        
        
      </tr>
@@ -170,9 +197,13 @@
        <td>
        ${ schedule.consultationFee }
        </td>
-       <td>
-       ${ schedule.isAvailable }
-       </td>
+       <c:choose>
+         <c:when test = "${ schedule.isAvailable == 'true' }">
+          <td>Active</td>
+          <td><a href = "bookappointment?id=${ schedule.scheduleId }">Book Appointment</a></td>
+         </c:when>
+         <c:otherwise>Inactive</c:otherwise>
+       </c:choose>
        
        
      </tr>

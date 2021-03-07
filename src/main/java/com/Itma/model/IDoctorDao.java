@@ -22,5 +22,11 @@ public boolean saveDoctor(Doctor doctor) throws IOException;
 	 
 	 public List<DoctorSchedule> fetchDoctorSchedule(String doctorEmail);
 	 
+	 
 	 public boolean saveSchedule(DoctorSchedule schedule);
+
+     public DoctorSchedule fetchScheduleById(int id);
+     
+     public List<UserDoctorAppointment> fetchAppointment(String email);
+     
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Itma.repository.UserDiagnosticsRepository;
+import com.Itma.repository.UserDoctorAppointmentRepository;
 import com.Itma.repository.UserInformationRepository;
 import com.Itma.repository.UserRepository;
 
@@ -21,6 +22,8 @@ public class UserDao implements IUserDao {
 	@Autowired
 	UserDiagnosticsRepository diagnostics;
 	
+    @Autowired
+    UserDoctorAppointmentRepository appointmentRepository;
 	
 	
 	@Override
@@ -96,5 +99,25 @@ public List<UserDiagnostics> fetchDiagnostics(String email){
 	   return diagnosticList;
 	
 }
+
+@Override 
+public List<UserDoctorAppointment> fetchAppointment(String email){
+	
+	
+	  List<UserDoctorAppointment> appointments = appointmentRepository.findByuserEmail(email);
+	
+	  return appointments;
+	  
+	  
+}
+
+@Override
+public UserDoctorAppointment submitAppointment(UserDoctorAppointment appointment) {
+	
+	appointmentRepository.save(appointment);
+	
+	return appointment;
+}
+
 
 }
