@@ -147,8 +147,8 @@ public class DoctorController {
 		
 		System.out.println(sTime);
 		
-		Time startTime = Time.valueOf(sTime);
-		Time endTime = Time.valueOf(eTime);
+		Time startTime = Time.valueOf(sTime+":00");
+		Time endTime = Time.valueOf(eTime+":00");
 		
 		schedule.setStartTime(startTime);
 		schedule.setEndTime(endTime);
