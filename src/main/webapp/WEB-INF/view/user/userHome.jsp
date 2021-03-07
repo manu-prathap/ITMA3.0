@@ -51,6 +51,8 @@ Specialization
 </th>
 <th scope = "col">
 </th>
+<th scope = "col">
+</th>
 </tr>
 <c:forEach var = "doctor" items="${ doctors }" >
 <tr>
@@ -58,6 +60,7 @@ Specialization
 <td>${ doctor.streetAddress } &nbsp;  ${ doctor.district }</td>
 <td><c:forEach var = "doctorspecialization" items = "${ doctor.specializations }">${ doctorspecialization.specialization }<br /></c:forEach></td>
 <td><a href="details?id=${ doctor.id }">View Details</a></td>
+<td><a href="schedules?id=${ doctor.id }">View Schedules</a></td>
 </tr>
 <!-- Search panel end -->
 

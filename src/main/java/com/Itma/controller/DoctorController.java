@@ -152,7 +152,7 @@ public class DoctorController {
 		
 		schedule.setStartTime(startTime);
 		schedule.setEndTime(endTime);
-		
+		schedule.setAvailable(true);
 		schedule.setDoctor(doctor);
 		
         doctorService.saveSchedule(schedule);
@@ -160,6 +160,7 @@ public class DoctorController {
 		
 		return "doctor/doctorHome";
 	}
+	
 	
 	
 }

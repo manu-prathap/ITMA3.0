@@ -10,5 +10,5 @@ public interface DoctorScheduleRepository extends JpaRepository<DoctorSchedule, 
 
 	
 	List<DoctorSchedule> findBydoctorDoctorEmail(String doctorEmail);
-	
+	DoctorSchedule findBydayOfWeek(String dayOfWeek);
 }

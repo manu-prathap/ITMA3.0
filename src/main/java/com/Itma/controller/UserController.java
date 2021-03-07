@@ -27,6 +27,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.Itma.model.Doctor;
 import com.Itma.model.DoctorDao;
+import com.Itma.model.DoctorSchedule;
 import com.Itma.model.HibernateSearchClass;
 import com.Itma.model.User;
 import com.Itma.model.UserDao;
@@ -156,6 +157,7 @@ public class UserController {
 	} 
 	
 	
+	
 	@GetMapping("/details")
 	
 	public String viewDetails(@RequestParam(value = "id", required = true) int id, HttpSession session, Map<String, Object> model) {
@@ -173,6 +175,7 @@ public class UserController {
 		return "user/userDoctorDetails";
 		
 	}
+	
 	
 	@GetMapping("/userdetails")
 	
@@ -239,7 +242,20 @@ public class UserController {
 	
 	}
 	
-	
-	
+	//View schedules of doctor
+	@GetMapping("/schedules")
+	public String viewDoctorSchedule(@RequestParam(value = "id")int id,
+			                         HttpSession session, 
+			                         Map<String, Object> model){
+	      
+		           Doctor doctor = doctorDao.fetchByIntId(id);
+		           List<DoctorSchedule> scheduleList = doctorDao.fetchDoctorSchedule(doctor.getDoctorEmail());        
+		           model.put("scheduleList", scheduleList);
+		           model.put("doctor", doctor);
+		           
+		        
+		            return null;
+
+          }
 
 }
