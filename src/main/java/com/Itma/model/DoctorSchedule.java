@@ -21,35 +21,14 @@ public class DoctorSchedule {
 	
 	@Id
     @GeneratedValue
-    private Long scheduleId;
-	
-
-	@Column(name = "doctorEmail")
-	private String doctorEmail;
-	
-	public String getDoctorEmail() {
-		return doctorEmail;
-	}
-
-	public void setDoctorEmail(String doctorEmail) {
-		this.doctorEmail = doctorEmail;
-	}
-
+    private Long scheduleId;	
 
 	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
 	@Column(name = "date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 	
-	
-	public LocalDate getDate() {
-		return date;
-	}
-
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-
+	private String dayOfWeek;
 	
 	@Column(name = "startTime")
 	private Time startTime;
@@ -61,10 +40,50 @@ public class DoctorSchedule {
 	private long consultationFee;
 	
 	@Column(name = "isAvailable")
-	private String isAvailable;
+	private boolean isAvailable;
 	
 	@Column(name = "maxCapacity")
 	private int maxCapacity;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="doctorEmail", referencedColumnName = "doctorEmail", nullable = false)
+	Doctor doctor;
+	
+	
+	
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+	public void setAvailable(boolean isAvailable) {
+		this.isAvailable = isAvailable;
+	}
+
+	
+	
+	
+	public String getDayOfWeek() {
+		return dayOfWeek;
+	}
+
+	public void setDayOfWeek(String dayOfWeek) {
+		this.dayOfWeek = dayOfWeek;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	
 	
 
 
@@ -102,11 +121,11 @@ public class DoctorSchedule {
 		this.consultationFee = consultationFee;
 	}
 
-	public String getIsAvailable() {
+	public boolean getIsAvailable() {
 		return isAvailable;
 	}
 
-	public void setIsAvailable(String isAvailable) {
+	public void setIsAvailable(boolean isAvailable) {
 		this.isAvailable = isAvailable;
 	}
 

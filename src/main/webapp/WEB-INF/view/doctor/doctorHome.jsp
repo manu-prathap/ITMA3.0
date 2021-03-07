@@ -8,7 +8,7 @@
 </head>
 <body>
 <p>Welcome ${ name }</p><br/>
-<a href = "">Set Schedules</a>
+<a href = "setschedules">Set Schedules</a>
 <a href = "">Add Specializations</a>
 <a href = "">Appointments</a>
 </body>

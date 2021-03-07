@@ -21,7 +21,7 @@
 <a href="user/register" style="font-size:60px">Registration</a><br />
 <a href="user/login" style="font-size:60px">Login</a><br />
 <a href="doctor/register" style="font-size:40px">Doctor's Registration</a><br />
-<a href="" style="font-size:40px">Doctor's Login</a>
+<a href="doctor/login" style="font-size:40px">Doctor's Login</a>
 
 </div>
 </div>

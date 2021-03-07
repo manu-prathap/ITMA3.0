@@ -5,7 +5,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -85,14 +88,16 @@ public class DoctorController {
 	@GetMapping("/login")
 	public String login(String email, Map<String, Object> model, HttpSession session) {
 		
+		email = "donald@email.com";
+		
 		Doctor doctor = doctorService.fetchById(email);
 		
 		String name = "Dr "+doctor.getFirstName();
 		
-		model.put("doctor",doctor);
+		model.put("doctor", doctor);
 		model.put("name", name);
 		session.setAttribute("doctor", doctor);
-		return "doctor/home";
+		return "doctor/doctorHome";
 		
 	}
 	
@@ -110,6 +115,51 @@ public class DoctorController {
 		return null;
 		
 	   }
+	
+	
+	@GetMapping("/setschedules")
+	public String setSchedules(Map<String, Object> model, HttpSession session) {
+		
+		String[] days = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+		
+		List<String> daysOfWeek = Arrays.asList(days);
+		
+		
+		
+		model.put("daysOfWeek", daysOfWeek);
+		
+		model.put("schedule", new DoctorSchedule());
+		
+		
+		return "doctor/doctorSchedule";
+		
+	}
+	
+	@PostMapping("/submitschedule")
+	public String submitSchedule(Map<String, Object> model, 
+			                     HttpSession session, 
+			                     DoctorSchedule schedule,
+			                     @RequestParam(value = "sTime", required = true)String sTime,
+			                     @RequestParam(value = "eTime", required = true)String eTime) {
+		
+		Doctor doctor = (Doctor)session.getAttribute("doctor");
+		
+		
+		System.out.println(sTime);
+		
+		Time startTime = Time.valueOf(sTime);
+		Time endTime = Time.valueOf(eTime);
+		
+		schedule.setStartTime(startTime);
+		schedule.setEndTime(endTime);
+		
+		schedule.setDoctor(doctor);
+		
+        doctorService.saveSchedule(schedule);
+		
+		
+		return "doctor/doctorHome";
+	}
 	
 	
 }

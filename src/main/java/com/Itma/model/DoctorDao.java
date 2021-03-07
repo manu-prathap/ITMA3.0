@@ -115,7 +115,19 @@ public class DoctorDao implements IDoctorDao {
 		return schedules;
 	}
 	
-	
+	@Override
+	public boolean saveSchedule(DoctorSchedule schedule) {
+		
+		try {
+		scheduleRepository.save(schedule);
+		
+		return true;
+		
+		}catch(IllegalArgumentException e){
+			
+		return false;
+		}
+	}
 	
 
 }
