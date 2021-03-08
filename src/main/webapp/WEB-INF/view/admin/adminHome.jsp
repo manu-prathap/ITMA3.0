@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<<<<<<< HEAD
    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-=======
->>>>>>> master
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +15,7 @@
 
 </head>
 <body>
-<<<<<<< HEAD
+
 
 	<nav>
 		<ul class="w3-navbar w3-card-4 w3-light-grey w3-left-align w3-top">
@@ -55,8 +52,6 @@
 			</c:when>
 		</c:choose>
 	</div>
-=======
-added admin!
->>>>>>> master
+
 </body>
 </html>
