@@ -10,6 +10,6 @@
 <p>Welcome ${ name }</p><br/>
 <a href = "setschedules">Set Schedules</a>
 <a href = "">Add Specializations</a>
-<a href = "">Appointments</a>
+<a href = "appointments">Appointments</a>
 </body>
 </html>

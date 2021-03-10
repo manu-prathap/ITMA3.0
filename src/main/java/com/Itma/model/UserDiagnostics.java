@@ -1,6 +1,7 @@
 package com.Itma.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.joda.time.DateTime;
+
 @Entity
 public class UserDiagnostics implements Serializable {
 
@@ -23,7 +24,7 @@ public class UserDiagnostics implements Serializable {
 	
 	private String note;
 	
-	private DateTime createTime;
+	private Date createTime;
 	
 	@ManyToOne
 	@JoinColumn(name = "email", referencedColumnName = "email", nullable = false)
@@ -49,11 +50,11 @@ public class UserDiagnostics implements Serializable {
 		this.note = note;
 	}
 
-	public DateTime getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(DateTime createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 

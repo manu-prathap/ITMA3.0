@@ -100,15 +100,5 @@ BMI:
 </form>
 </div> <!-- End of form-group -->
 
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>

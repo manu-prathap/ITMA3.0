@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -12,8 +13,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.joda.time.LocalDate;
+import org.joda.time.Period;
+import org.joda.time.PeriodType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -27,6 +32,11 @@ import com.Itma.model.Doctor;
 import com.Itma.model.DoctorDao;
 import com.Itma.model.DoctorSchedule;
 import com.Itma.model.DoctorSpecialization;
+import com.Itma.model.User;
+import com.Itma.model.UserDao;
+import com.Itma.model.UserDiagnostics;
+import com.Itma.model.UserDoctorAppointment;
+import com.Itma.model.UserInformation;
 
 
 
@@ -42,6 +52,9 @@ public class DoctorController {
 	
 	@Autowired
 	BCryptPasswordEncoder encoder;
+	
+	@Autowired
+	UserDao userDao;
 	
 
 
@@ -159,6 +172,113 @@ public class DoctorController {
 		
 		
 		return "doctor/doctorHome";
+	}
+	
+	
+	@GetMapping("/appointments")
+	public String viewAppointments(Map<String, Object> model, HttpSession session) {
+		
+		Doctor doctor = (Doctor) session.getAttribute("doctor");
+		
+	    List<UserDoctorAppointment> appointments = doctorService.fetchAppointment(doctor.getDoctorEmail());
+		
+	    model.put("appointments", appointments);
+	    model.put("doctor", doctor);
+		
+		
+	    return "doctor/doctorAppointments";	
+	    
+	}
+	
+	@GetMapping("/viewdetails")
+	public String viewUserDetails(Map<String, Object> model, 
+			                      HttpSession session,
+			                      @RequestParam(value = "id") int id) {
+		
+		User user = userDao.fetchById(id);
+		UserInformation information = userDao.fetchUserInformation(user.getEmail());
+		
+		model.put("information", information);
+		model.put("patient", user);
+		
+		double weight = information.getWeight();
+		double height = information.getHeight();
+		
+		
+		double bmi = ((weight/(height*height))*10000);
+		
+		model.put("bmi", bmi);
+		
+		Date dob = user.getDob();
+		LocalDate dobLocal = LocalDate.parse(dob.toString());
+		LocalDate dateNow = LocalDate.now();
+		
+		Period period = new Period(dobLocal, dateNow, PeriodType.yearMonthDay());
+		
+		int age = period.getYears();
+		
+		model.put("age", age);
+		
+		return "doctor/doctorUserInfo";
+		
+	}
+	
+	@GetMapping("/viewdiagnostics")
+	public String viewUserDiagnostics(Map<String, Object> model, 
+			                      HttpSession session,
+			                      @RequestParam(value = "id") int id) {
+		
+	    Doctor doctor = (Doctor)session.getAttribute("doctor");
+		User user = userDao.fetchById(id);
+	    
+	    List<UserDiagnostics> diagnostics = doctorService.fetchDiagnosticHistory(doctor.getDoctorEmail());
+	    
+	    model.put("diagnostics", diagnostics);
+	    model.put("doctor", doctor);
+	    model.put("patient", user);
+	    
+		return "doctor/doctorUserDiag";
+		
+	}
+	
+	
+	@GetMapping("/createDiagnosis")
+	public String createDiagnosis(Map<String, Object> model, 
+			                      HttpSession session, 
+			                      UserDiagnostics prescription,
+			                      @RequestParam(value = "id") int id
+			                      ) {
+		
+	
+	 User user = userDao.fetchById(id);
+	 Doctor doctor = (Doctor)session.getAttribute("doctor");
+	 model.put("prescription", prescription);
+	 model.put("patient", user);	
+	 model.put("doctor", doctor);	
+		
+	return "doctor/doctorPrescription";	
+	}
+	
+	
+	@PostMapping("/issueDiag")
+	public void issueDiagnosis(Map<String, Object> model, 
+			                      HttpSession session, 
+			                      UserDiagnostics prescription,
+			                      @RequestParam(value = "id") int id,
+			                      HttpServletResponse response) throws IOException {
+		
+		
+		prescription.setDoctor((Doctor)session.getAttribute("doctor"));
+		prescription.setUser(userDao.fetchById(id));
+		
+		LocalDate date = LocalDate.now();
+		
+		Date sqlDate = Date.valueOf(date.toString());
+		
+		prescription.setCreateTime(sqlDate);
+		
+		response.sendRedirect("viewdiagnostics");
+		
 	}
 	
 	

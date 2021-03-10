@@ -1,6 +1,7 @@
 package com.Itma.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.joda.time.LocalDate;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -235,7 +237,7 @@ public class UserController {
 		info.setUser(user);
 		userDao.setUserInformation(info);
 		
-		viewUserDetails(session, model); //redirect to previous handler ^^^
+		//viewUserDetails(session, model); //redirect to previous handler ^^^
 		
 		response.sendRedirect("userdetails");
 		
@@ -262,7 +264,7 @@ public class UserController {
 
           }
 	
-	
+	//Booking appointment -> add to appointment table
 	@GetMapping("/bookappointment")
     public String bookAppointment(@RequestParam(value = "id")int scheduleId, 
     		                      HttpSession session,
@@ -273,11 +275,21 @@ public class UserController {
 		DoctorSchedule schedule = doctorDao.fetchScheduleById(scheduleId);
 		Doctor doctor = schedule.getDoctor();
 		
+		LocalDate date = LocalDate.now();
+		Date sqlDate = Date.valueOf(date.toString());
+		
+		LocalDate appDate = dayCalculator(date,schedule.getDayOfWeek());  //method at end of Controller
+		Date sqlAppDate = Date.valueOf(appDate.toString());
+		
+		appointment.setBookedDate(sqlDate);
+		appointment.setAppDate(sqlAppDate);
+		
 		appointment.setDoctor(doctor);
 		appointment.setSchedule(schedule);
 		appointment.setUser(user);
 		appointment.setUserStatus(true);
 		appointment.setDoctorStatus(true);
+		
 		
 		userDao.submitAppointment(appointment);
 		
@@ -285,5 +297,44 @@ public class UserController {
 		return "user/userHome";
 		
 	} 
+	
+	//Viewing appointment
+	
+	@GetMapping("/viewappointments")
+	public String viewAppointment(Map<String, Object> model, HttpSession session) {
+		
+		User user = (User)session.getAttribute("user");
+		
+		List<UserDoctorAppointment> appointments = userDao.fetchAppointment(user.getEmail());
+		
+		model.put("appointments", appointments);
+		
+		model.put("user",user);
+		
+		model.put("name", user.getFirstName());
+		
+		
+		
+		return "user/userAppointments" ;
+	}
+	
+	//obtain day of week based on the appointment booking date
+	private LocalDate dayCalculator(LocalDate date, String day) {
+		
+		String days[] = {"Monday", "Tuesday","Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+		
+		int i = 0;
+		
+		//System.out.println(days[ date.plusDays(i).getDayOfWeek() ]);
+		
+		for(i=0; i<5; i++) {
+			
+			if( day == days[ date.plusDays(i-1).getDayOfWeek() ] ) break;
+			
+		}
+		
+		
+		return date.plusDays(i);
+	}
 	
 }

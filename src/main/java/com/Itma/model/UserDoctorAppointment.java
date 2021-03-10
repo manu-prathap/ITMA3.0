@@ -1,12 +1,14 @@
 package com.Itma.model;
 
 import java.io.Serializable;
+import java.sql.Date;  
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 
 @Entity
 public class UserDoctorAppointment implements Serializable {
@@ -32,13 +34,51 @@ public class UserDoctorAppointment implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "scheduleId", referencedColumnName = "scheduleId")
 	private DoctorSchedule schedule;
+	
+	
+	private Date bookedDate;
+	
+	private Date appDate; //appointment date calculated in controller
 
 	private boolean userStatus;
 	
 	private boolean doctorStatus;
 	
-	
-	
+//	private String dayOfWeek;
+//	
+//	
+//	public String getDayOfWeek() {
+//		return dayOfWeek;
+//	}
+//
+//	public void setDayOfWeek(String dayOfWeek) {
+//		this.dayOfWeek = dayOfWeek;
+//	}
+
+	public Date getBookedDate() {
+		return bookedDate;
+	}
+
+	public void setBookedDate(Date bookedDate) {
+		this.bookedDate = bookedDate;
+	}
+
+	public Date getAppDate() {
+		return appDate;
+	}
+
+	public void setAppDate(Date appDate) {
+		this.appDate = appDate;
+	}
+
+	public Date getDate() {
+		return bookedDate;
+	}
+
+	public void setDate(Date bookedDate) {
+		this.bookedDate = bookedDate;
+	}
+
 	public boolean isUserStatus() {
 		return userStatus;
 	}

@@ -88,7 +88,7 @@ public UserInformation setUserInformation(UserInformation info) {
 		infoRepository.save(info);
 		
 		
-		return null;
+		return info;
 	}
 	
 @Override

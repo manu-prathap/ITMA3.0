@@ -29,4 +29,6 @@ public boolean saveDoctor(Doctor doctor) throws IOException;
      
      public List<UserDoctorAppointment> fetchAppointment(String email);
      
+     public List<UserDiagnostics> fetchDiagnosticHistory(String email);
+     
 }

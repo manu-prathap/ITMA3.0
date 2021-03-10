@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.Itma.repository.DoctorRepository;
 import com.Itma.repository.DoctorScheduleRepository;
 import com.Itma.repository.DoctorSpecializationRepository;
+import com.Itma.repository.UserDiagnosticsRepository;
 import com.Itma.repository.UserDoctorAppointmentRepository;
 
 
@@ -30,6 +31,9 @@ public class DoctorDao implements IDoctorDao {
 	
 	@Autowired
     UserDoctorAppointmentRepository appointmentRepository;
+	
+	@Autowired 
+	UserDiagnosticsRepository diagnosticRepo;
 
 	@Override
 	public boolean saveDoctor(Doctor doctor) throws IOException {
@@ -146,6 +150,14 @@ public class DoctorDao implements IDoctorDao {
 		
 		
 		return appointments;
+	}
+	
+	@Override
+	public List<UserDiagnostics> fetchDiagnosticHistory(String email){
+		
+		List<UserDiagnostics> diagnostics = diagnosticRepo.findBydoctorDoctorEmail(email);
+		
+		return diagnostics;
 	}
 
 }
